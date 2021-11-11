@@ -1,17 +1,45 @@
 import { Container } from "./styles";
+import { useNavigate } from 'react-router-dom';
 
 export function Button() {
+
+    let navigate = useNavigate();
+
+    const redirectAd = () => {
+      navigate('/adicao')
+    }
+    const redirectSub = () => {
+        navigate('/subtracao')
+    }
+    const redirectMult = () => {
+        navigate('/multiplicacao')
+    }
+    const redirectDiv = () => {
+        navigate('/divisao')
+    }
+    const redirectTrans = () => {
+        navigate('/translacao')
+    }
+    const redirectRot = () => {
+        navigate('/rotacao')
+    }
+    const redirectEsc = () => {
+        navigate('/escala')
+    }
+    const redirectRef = () => {
+        navigate('/reflexao')
+    }
     return (
         <Container>
-
-            <button> Adiçao </button>
-            <button> Subtração </button>
-            <button> Multiplicação  </button>
-            <button> Divisão  </button>
-            <button> Translação </button>
-            <button> Rotação </button>
-            <button> Escala </button>
-            <button> Reflexão </button>
+            <button onClick={redirectAd}> Adiçao </button>
+            <button onClick={redirectSub}> Subtração </button>
+            <button onClick={redirectMult}> Multiplicação  </button>
+            <button onClick={redirectDiv}> Divisão  </button>
+            <button onClick={redirectTrans}> Translação </button>
+            <button onClick={redirectRot}> Rotação </button>
+            <button onClick={redirectEsc}> Escala </button>
+            <button onClick={redirectRef}> Reflexão </button>
+            
 
         </Container>
     );

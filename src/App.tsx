@@ -8,6 +8,7 @@ export function App() {
         <>
             <Router>
                 <Header />
+               
                 <GlobalStyle />
             </Router>
         </>

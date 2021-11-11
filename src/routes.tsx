@@ -19,13 +19,14 @@ export default function MainRoutes() {
        <Routes>
            <Header/>
            <Route path="/adicao" element ={<Adicao/>} />
+           <Route path="/subtracao" element ={<Subtracao/>} />
+           <Route path="/multiplicacao" element ={<Multiplicacao/>} />
            <Route path="/divisao" element ={<Divisao/>} />
            <Route path="/escala" element ={<Escala/>} />
-           <Route path="/multiplicacao" element ={<Multiplicacao/>} />
-           <Route path="/reflexao" element ={<Reflexao/>} />
-           <Route path="/rotacao" element ={<Rotacao/>} />
-           <Route path="/subtracao" element ={<Subtracao/>} />
            <Route path="/translacao" element ={<Translacao/>} />
+           <Route path="/rotacao" element ={<Rotacao/>} />
+           <Route path="/escala" element ={<Escala/>} />
+           <Route path="/reflexao" element ={<Reflexao/>} />
            <Route path="*" element ={<h1>Not Found</h1>}/>
        </Routes>
        
