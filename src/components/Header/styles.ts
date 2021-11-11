@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.header`
     background: var(--orange);
+    height: 10.5rem ;
 
 `
 

@@ -1,8 +1,9 @@
 import { Container } from "./styles";
 
-export function Button(){
-    return(
+export function Button() {
+    return (
         <Container>
+
             <button> Adiçao </button>
             <button> Subtração </button>
             <button> Multiplicação  </button>
@@ -11,6 +12,7 @@ export function Button(){
             <button> Rotação </button>
             <button> Escala </button>
             <button> Reflexão </button>
+
         </Container>
     );
 }
