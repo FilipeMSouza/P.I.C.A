@@ -4,7 +4,7 @@ import{
     Route
 } from 'react-router-dom';
 
-import {Header} from './components/Header';
+import {Home} from './components/Home';
 import Adicao from './pages/adicao';
 import Divisao from './pages/divisao';
 import Escala from './pages/escala';
@@ -17,7 +17,8 @@ import Translacao from './pages/translacao';
 export default function MainRoutes() {
     return (
        <Routes>
-           <Header/>
+           
+           <Route path="/" element={< Home/>}/>
            <Route path="/adicao" element ={<Adicao/>} />
            <Route path="/subtracao" element ={<Subtracao/>} />
            <Route path="/multiplicacao" element ={<Multiplicacao/>} />
