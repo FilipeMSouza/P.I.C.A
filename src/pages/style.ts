@@ -8,28 +8,42 @@ export const Container = styled.div`
         margin-left: auto;
         margin-right: auto;
     }
+
     
 `;
-export const RightContent= styled.div`
+
+export const AuxContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+`;
+
+
+export const Content = styled.div`
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    
-    div{ 
-        display: flex;
-        flex-direction: horizontal;
-    }
     img{
-        margin-left: 2rem;
-        padding: 0.75rem;
-        &.imgSoma{
-            height: 4rem;
-            width:  4rem;
+        margin-left: .75rem;
+        padding: 1rem;
+        &.opcao{
+            height: 5rem;
+            width:  5rem;
         }
     }
+    
+`;
 
-    button{
-        margin-top: 1.25rem;
+
+export const ButtonContent = styled.div`
+    display: flex;
+    flex-direction: column;
+    
+
+    button { 
+        margin-top:2rem;
+        margin-bottom:2rem;
+        margin-left: 0.75rem;
         height: 3rem;
         background: var(--Dark-brown);
         padding: 0.5rem 0.5rem;
@@ -37,23 +51,23 @@ export const RightContent= styled.div`
         color: var(--light-brown);
         border-color: var(--Dark-brown);
         box-shadow: none;
-    
     }
-
 `;
 
-export const LeftContent= styled.div`
+export const Result = styled.div`
     display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    margin-top: -21rem;
-    
+    flex-direction: row;
+    flex-wrap:wrap;
+    align-items: center;
+    margin-top: -24rem;
+    margin-left: auto;
+    margin-right: 1rem;
+    width: 50%;
     img{
-        margin-right: 5rem;
-        padding: 0.75rem;
-        &.imgSoma{
+        padding: 0.5rem;
+        &.resultado{
+            width: 20rem;
             height: 20rem;
-            width:  20rem;
         }
     }
 `;
