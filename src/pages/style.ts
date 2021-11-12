@@ -16,6 +16,7 @@ export const AuxContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
+    margin-top:2rem;
 `;
 
 
@@ -59,7 +60,7 @@ export const Result = styled.div`
     flex-direction: row;
     flex-wrap:wrap;
     align-items: center;
-    margin-top: -24rem;
+    margin-top: -28rem;
     margin-left: auto;
     margin-right: 1rem;
     width: 50%;

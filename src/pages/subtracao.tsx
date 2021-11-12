@@ -2,6 +2,24 @@ import { Container, Content, AuxContainer, ButtonContent, Result } from "./style
 import Logo from "../assets/placeholders/lena_gray_512.jpeg";
 
 export default function Subtracao() {
+    function handleClick(param: number){
+        switch(param){
+            case 1:
+                console.log(1);
+                break;
+            case 2:
+                console.log(2);
+                break;
+            case 3:
+                console.log(3);
+                break;  
+            case 4:
+                console.log(4);
+                break;
+            default:
+                break;
+            }
+    }
     return (
         <Container>
             <h1>Operação de Subtração entre duas imagens</h1>
@@ -16,10 +34,10 @@ export default function Subtracao() {
                 </Content>
 
                 <ButtonContent>
-                    <button onClick={() => console.log("Clicked")}>Subtrair das outras imagens</button>
-                    <button onClick={() => console.log("Clicked")}>Subtrair das outras imagens</button>
-                    <button onClick={() => console.log("Clicked")}>Subtrair das outras imagens</button>
-                    <button onClick={() => console.log("Clicked")}>Subtrair das outras imagens</button>
+                    <button onClick={() => handleClick(1)}>Subtrair das outras imagens</button>
+                    <button onClick={() => handleClick(2)}>Subtrair das outras imagens</button>
+                    <button onClick={() => handleClick(3)}>Subtrair das outras imagens</button>
+                    <button onClick={() => handleClick(4)}>Subtrair das outras imagens</button>
                 </ButtonContent>
             </AuxContainer>
             <Result>

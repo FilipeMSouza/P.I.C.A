@@ -2,6 +2,24 @@ import { Container, Content, AuxContainer, ButtonContent, Result } from "./style
 import Logo from "../assets/placeholders/lena_gray_512.jpeg";
 
 export default function Rotacao() {
+    function handleClick(param: number){
+        switch(param){
+            case 1:
+                console.log(1);
+                break;
+            case 2:
+                console.log(2);
+                break;
+            case 3:
+                console.log(3);
+                break;  
+            case 4:
+                console.log(4);
+                break;
+            default:
+                break;
+            }
+    }
     return (
         <Container>
             <h1>Operação de Rotação </h1>
@@ -15,10 +33,10 @@ export default function Rotacao() {
                 </Content>
 
                 <ButtonContent>
-                    <button onClick={() => console.log("Clicked")}>Rotacionar imagem</button>
-                    <button onClick={() => console.log("Clicked")}>Rotacionar imagem</button>
-                    <button onClick={() => console.log("Clicked")}>Rotacionar imagem</button>
-                    <button onClick={() => console.log("Clicked")}>Rotacionar imagem</button>
+                    <button onClick={() => handleClick(1)}>Rotacionar imagem</button>
+                    <button onClick={() => handleClick(2)}>Rotacionar imagem</button>
+                    <button onClick={() => handleClick(3)}>Rotacionar imagem</button>
+                    <button onClick={() => handleClick(4)}>Rotacionar imagem</button>
                 </ButtonContent>
             </AuxContainer>
 
