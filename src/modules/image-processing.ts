@@ -20,7 +20,7 @@ let sumTwoImages = async (
     newImageData[i] = (firstImageData[i] + secondImageData[i]) as number;
   }
 
-  let newImage = new Image({
+  let newImage: Image = new Image({
     width: Math.sqrt(firstImageData.length),
     height: Math.sqrt(firstImageData.length),
     data: normalizeImageData(newImageData),

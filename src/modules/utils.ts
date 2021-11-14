@@ -27,7 +27,8 @@ export let normalizeImageData = (
   let [min, max] = getExtremesFromArray(imagePixelsArray);
 
   for(let i in imagePixelsArray){
-    imagePixelsArray[i] = Math.floor(255 * (imagePixelsArray[i] - min)/(max-min))
+    imagePixelsArray[i] =  Math.round(255 / (max - min) * (imagePixelsArray[i] - min))
+
   }
   return imagePixelsArray;
 };
