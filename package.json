@@ -16,8 +16,9 @@
     "react-dom": "^17.0.2",
     "react-router": "^6.0.2",
     "react-router-dom": "^6.0.0-beta.8",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^0.9.5",
     "styled-components": "^5.3.3",
+    "ts-node": "^10.4.0",
     "typescript": "^4.4.4",
     "web-vitals": "^1.0.1"
   },
@@ -25,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "extract-config": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/image-processing.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^16.11.7",
     "@types/react-dom": "^17.0.11",
     "@types/styled-components": "^5.1.15"
   }
