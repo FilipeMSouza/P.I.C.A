@@ -1,9 +1,11 @@
-import { Container, Content, AuxContainer, ButtonContent, Result } from "./style"
-import Logo from "../assets/placeholders/lena_gray_512.jpeg";
+import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
 import {useState} from 'react';
 
-export default function Multiplicacao() {
-    
+
+
+export default function Adicao() {
+
     const [op1,setOp1] = useState("off")
     const [op2,setOp2] = useState("off")
     const [op3,setOp3] = useState("off")
@@ -47,31 +49,44 @@ export default function Multiplicacao() {
                 break;
             }
     }
+
     return (
-        <Container >
-            <h1>Operação de Adição entre duas imagens</h1>
-            <p>Essa Função Multiplica duas imagens resultando em outra</p>
+      
+            <Container>
+                <h1>Operação de Adição entre duas imagens</h1>
+                <p>Essa função soma duas imagens resultando em outra</p>
+                <AuxContainer>
+                    <Content>
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                    </Content>
+                    <ButtonContent>
+                        <button onClick={() => handleClick(1)}>Multiplicar com</button>
+                        <button onClick={() => handleClick(2)}>Multiplicar com</button>
+                        <button onClick={() => handleClick(3)}>Multiplicar com</button>
+                        <button onClick={() => handleClick(4)}>Multiplicar com</button>
+                    </ButtonContent>
 
-            <AuxContainer>
-                <Content>
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                </Content>
+                </AuxContainer>
 
-                <ButtonContent>
-                    <button onClick={() => handleClick(1)}>Multiplicar com outras imagens</button>
-                    <button onClick={() => handleClick(2)}>Multiplicar com outras imagens</button>
-                    <button onClick={() => handleClick(3)}>Multiplicar com outras imagens</button>
-                    <button onClick={() => handleClick(4)}>Multiplicar com outras imagens</button>
-                </ButtonContent>
-            </AuxContainer>
-            <Result>
-                <img className="resultado" src={Logo} alt="Resultado 1" />
-                <img className="resultado" src={Logo} alt="Resultado 2" />
-                <img className="resultado" src={Logo} alt="Resultado 3" />
-            </Result>
-        </Container>
+                <AuxContainer2>
+                    <Oparation>
+                        <button onClick={() => handleClick(1)}>Imagem 2</button>
+                        <button onClick={() => handleClick(2)}>Imagem 3</button>
+                        <button onClick={() => handleClick(3)}>Imagem 4</button>
+                    </Oparation>
+                    <Result>
+                        <img className="resultado" src={LogoA} alt="Resultado" />
+
+                    </Result>
+                </AuxContainer2>
+
+            </Container>
+    
+
     );
 }
+
+

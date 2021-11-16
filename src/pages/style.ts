@@ -28,8 +28,8 @@ export const Content = styled.div`
         margin-left: .75rem;
         padding: 1rem;
         &.opcao{
-            height: 5rem;
-            width:  5rem;
+            height: 6rem;
+            width:  6rem;
         }
     }
     
@@ -39,6 +39,43 @@ export const Content = styled.div`
 export const ButtonContent = styled.div`
     display: flex;
     flex-direction: column;
+    
+
+    button { 
+        margin-top:1.5rem;
+        margin-bottom:1.5rem;
+        margin-left: 0.75rem;
+        height: 3rem;
+        background: var(--Dark-brown);
+        padding: 0.5rem 0.5rem;
+        border-radius: 0.25rem;
+        color: var(--light-brown);
+        border-color: var(--Dark-brown);
+        box-shadow: none;
+    }
+`;
+
+export const Result = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    align-items: center;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: 9.75rem;
+    width: 50%;
+    img{
+        padding: 0.5rem;
+        &.resultado{
+            width: 20rem;
+            height: 20rem;
+        }
+    }
+`;
+
+export const Oparation = styled.div`
+    display: flex;
+    flex-direction: row;
     
 
     button { 
@@ -55,10 +92,10 @@ export const ButtonContent = styled.div`
     }
 `;
 
-export const Result = styled.div`
+export const AuxContainer2 = styled.div`
     display: flex;
-    flex-direction: row;
-    flex-wrap:wrap;
+    flex-direction: column;
+    
     align-items: center;
     margin-top: -28rem;
     margin-left: auto;

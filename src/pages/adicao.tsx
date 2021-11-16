@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
 import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
 import {useState} from 'react';
 
@@ -62,20 +62,26 @@ export default function Adicao() {
                         <img className="opcao" src={LogoA} alt="logo" />
                         <img className="opcao" src={LogoA} alt="logo" />
                     </Content>
-
                     <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Somar com as outras imagens</button>
-                        <button onClick={() => handleClick(2)}>Somar com as outras imagens</button>
-                        <button onClick={() => handleClick(3)}>Somar com as outras imagens</button>
-                        <button onClick={() => handleClick(4)}>Somar com as outras imagens</button>
+                        <button onClick={() => handleClick(1)}>Somar com</button>
+                        <button onClick={() => handleClick(2)}>Somar com</button>
+                        <button onClick={() => handleClick(3)}>Somar com</button>
+                        <button onClick={() => handleClick(4)}>Somar com</button>
                     </ButtonContent>
+
                 </AuxContainer>
 
-                <Result>
-                    <img className="resultado" src={LogoA} alt="Resultado 1" />
-                    <img className="resultado" src={LogoA} alt="Resultado 2" />
-                    <img className="resultado" src={LogoA} alt="Resultado 3" />
-                </Result>
+                <AuxContainer2>
+                    <Oparation>
+                        <button onClick={() => handleClick(1)}>Imagem 2</button>
+                        <button onClick={() => handleClick(2)}>Imagem 3</button>
+                        <button onClick={() => handleClick(3)}>Imagem 4</button>
+                    </Oparation>
+                    <Result>
+                        <img className="resultado" src={LogoA} alt="Resultado" />
+
+                    </Result>
+                </AuxContainer2>
 
             </Container>
     

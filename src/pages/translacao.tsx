@@ -1,9 +1,11 @@
-import { Container, Content, AuxContainer, ButtonContent, Result } from "./style"
-import Logo from "../assets/placeholders/lena_gray_512.jpeg";
+import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
 import {useState} from 'react';
 
-export default function Translacao() {
-    
+
+
+export default function Adicao() {
+
     const [op1,setOp1] = useState("off")
     const [op2,setOp2] = useState("off")
     const [op3,setOp3] = useState("off")
@@ -47,32 +49,44 @@ export default function Translacao() {
                 break;
             }
     }
+
     return (
-        <Container>
-            <h1>Operação de Translação</h1>
-            <p>IDK</p>
-            <AuxContainer>
-                <Content>
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                </Content>
+      
+            <Container>
+                <h1>Operação de Adição entre duas imagens</h1>
+                <p>Essa função soma duas imagens resultando em outra</p>
+                <AuxContainer>
+                    <Content>
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                    </Content>
+                    <ButtonContent>
+                        <button onClick={() => handleClick(1)}>Somar com</button>
+                        <button onClick={() => handleClick(2)}>Somar com</button>
+                        <button onClick={() => handleClick(3)}>Somar com</button>
+                        <button onClick={() => handleClick(4)}>Somar com</button>
+                    </ButtonContent>
 
-                <ButtonContent>
-                    <button onClick={() => handleClick(1)}>Translacionar imagem</button>
-                    <button onClick={() => handleClick(2)}>Translacionar imagem</button>
-                    <button onClick={() => handleClick(3)}>Translacionar imagem</button>
-                    <button onClick={() => handleClick(4)}>Translacionar imagem</button>
-                </ButtonContent>
-            </AuxContainer>
+                </AuxContainer>
 
-            <Result>
-                <img className="resultado" src={Logo} alt="Resultado" />
-            </Result>
+                <AuxContainer2>
+                    <Oparation>
+                        <button onClick={() => handleClick(1)}>Imagem 2</button>
+                        <button onClick={() => handleClick(2)}>Imagem 3</button>
+                        <button onClick={() => handleClick(3)}>Imagem 4</button>
+                    </Oparation>
+                    <Result>
+                        <img className="resultado" src={LogoA} alt="Resultado" />
 
+                    </Result>
+                </AuxContainer2>
 
-        </Container>
+            </Container>
+    
 
     );
 }
+
+

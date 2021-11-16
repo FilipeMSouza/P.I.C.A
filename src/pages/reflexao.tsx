@@ -1,9 +1,11 @@
-import { Container, Content, AuxContainer, ButtonContent, Result } from "./style"
-import Logo from "../assets/placeholders/lena_gray_512.jpeg";
+import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
 import {useState} from 'react';
 
-export default function Reflexao() {
-   
+
+
+export default function Adicao() {
+
     const [op1,setOp1] = useState("off")
     const [op2,setOp2] = useState("off")
     const [op3,setOp3] = useState("off")
@@ -47,28 +49,45 @@ export default function Reflexao() {
                 break;
             }
     }
-    return (
-        <Container>
-            <h1>Operação de Reflexão</h1>
-            <p>Essa função faz a reflexão</p>
-            <AuxContainer>
-                <Content>
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                </Content>
 
-                <ButtonContent>
-                    <button onClick={() => handleClick(1)}>Relfetir imagem</button>
-                    <button onClick={() => handleClick(2)}>Relfetir imagem</button>
-                    <button onClick={() => handleClick(3)}>Relfetir imagem</button>
-                    <button onClick={() => handleClick(4)}>Relfetir imagem</button>
-                </ButtonContent>
-            </AuxContainer>
-            <Result>
-                <img className="resultado" src={Logo} alt="Resultado" />
-            </Result>
-        </Container>
+    return (
+      
+            <Container>
+                <h1>Operação de Adição entre duas imagens</h1>
+                <p>Essa função soma duas imagens resultando em outra</p>
+                <AuxContainer>
+                    <Content>
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                    </Content>
+                    <ButtonContent>
+                        <button onClick={() => handleClick(1)}>Refletir</button>
+                        <button onClick={() => handleClick(2)}>Refletir</button>
+                        <button onClick={() => handleClick(3)}>Refletir</button>
+                        <button onClick={() => handleClick(4)}>Refletir</button>
+                    </ButtonContent>
+
+                </AuxContainer>
+
+                <AuxContainer2>
+                    <Oparation>
+                        <button onClick={() => handleClick(1)}>de cima</button>
+                        <button onClick={() => handleClick(2)}>de baixo</button>
+                        <button onClick={() => handleClick(3)}>da direita</button>
+                        <button onClick={() => handleClick(3)}>da esqueda</button>
+                    </Oparation>
+                    <Result>
+                        <img className="resultado" src={LogoA} alt="Resultado" />
+
+                    </Result>
+                </AuxContainer2>
+
+            </Container>
+    
+
     );
 }
+
+

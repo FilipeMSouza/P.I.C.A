@@ -1,9 +1,11 @@
-import { Container, Content, AuxContainer, ButtonContent, Result } from "./style"
-import Logo from "../assets/placeholders/lena_gray_512.jpeg";
+import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
 import {useState} from 'react';
 
-export default function Escala() {
-    
+
+
+export default function Adicao() {
+
     const [op1,setOp1] = useState("off")
     const [op2,setOp2] = useState("off")
     const [op3,setOp3] = useState("off")
@@ -47,35 +49,43 @@ export default function Escala() {
                 break;
             }
     }
+
     return (
-        <Container>
-            <h1>Operação de Escalonamento de imagens</h1>
-            <p>Essa Função muda a escala de uma imagem</p>
+      
+            <Container>
+                <h1>Operação de Adição entre duas imagens</h1>
+                <p>Essa função soma duas imagens resultando em outra</p>
+                <AuxContainer>
+                    <Content>
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                        <img className="opcao" src={LogoA} alt="logo" />
+                    </Content>
+                    <ButtonContent>
+                        <button onClick={() => handleClick(1)}>Selecionar imagem</button>
+                        <button onClick={() => handleClick(2)}>Selecionar imagem</button>
+                        <button onClick={() => handleClick(3)}>Selecionar imagem</button>
+                        <button onClick={() => handleClick(4)}>Selecionar imagem</button>
+                    </ButtonContent>
 
-            <AuxContainer>
-                <Content>
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                    <img className="opcao" src={Logo} alt="logo" />
-                </Content>
+                </AuxContainer>
 
-                <ButtonContent>
-                    <button onClick={() => handleClick(1)}>Upscale</button>
-                    <button onClick={() => handleClick(2)}>Upscale</button>
-                    <button onClick={() => handleClick(3)}>Upscale</button>
-                    <button onClick={() => handleClick(4)}>Upscaale</button>
-                </ButtonContent>
-                <ButtonContent>
-                    <button onClick={() => handleClick(1)}>Downscale</button>
-                    <button onClick={() => handleClick(2)}>Downscale</button>
-                    <button onClick={() => handleClick(3)}>Downscale</button>
-                    <button onClick={() => handleClick(4)}>Downscale</button>
-                </ButtonContent>
-            </AuxContainer>
-            <Result>
-                <img className="resultado" src={Logo} alt="Resultado" />
-            </Result>
-        </Container>
+                <AuxContainer2>
+                    <Oparation>
+                        <button onClick={() => handleClick(1)}>Dmininuir</button>
+                        <button onClick={() => handleClick(2)}>Aumentar</button>
+                    </Oparation>
+                    <Result>
+                        <img className="resultado" src={LogoA} alt="Resultado" />
+
+                    </Result>
+                </AuxContainer2>
+
+            </Container>
+    
+
     );
 }
+
+
