@@ -87,22 +87,12 @@ export default function Adicao() {
                     </Dropdown>
                     <Dropdown>
                         <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                            Dropdown Button
+                            Graus
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item >30</Dropdown.Item>
-                            <Dropdown.Item >45</Dropdown.Item>
                             <Dropdown.Item >90</Dropdown.Item>
-                            <Dropdown.Item >135</Dropdown.Item>
-                            <Dropdown.Item >150</Dropdown.Item>
                             <Dropdown.Item >180</Dropdown.Item>
-                            <Dropdown.Item >225</Dropdown.Item>
-                            <Dropdown.Item >240</Dropdown.Item>
-                            <Dropdown.Item >270</Dropdown.Item>
-                            <Dropdown.Item >315</Dropdown.Item>
-                            <Dropdown.Item >330</Dropdown.Item>
-                            <Dropdown.Item >360</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                     
