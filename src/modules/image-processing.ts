@@ -70,7 +70,7 @@ let multiplyTwoImages = async (
   return newImage.toDataURL();
 };
 
-let subtractTwoImages = async (
+let subTwoImages = async (
   image1Base64: string,
   image2Base64: string
 ) => {
