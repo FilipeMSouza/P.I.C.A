@@ -35,6 +35,17 @@ export const Content = styled.div`
     
 `;
 
+export const Img = styled.img`
+        
+        margin-left: .75rem;
+        padding: 1rem;
+        &.opcao{
+            height: 6rem;
+            width:  6rem;
+        }
+`
+
+
 
 export const ButtonContent = styled.div`
     display: flex;
