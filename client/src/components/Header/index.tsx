@@ -1,5 +1,6 @@
 import logoImg from '../../assets/LogoImg.svg';
 import { Container, Content } from './styles';
+import React from 'react';
 
 export function Header() {
 

@@ -3,6 +3,7 @@ import MainRoutes from './routes'
 import { GlobalStyle } from "./styles/global";
 import { Button } from "./components/Buttons";
 import { MemoryRouter as Router } from 'react-router-dom';
+import React from "react";
 
 export function App() {
     return (

@@ -1,9 +1,9 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
-import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
+import LogoA from "../assets/placeholders/lena.jpeg";
 import { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import React from "react";
 
 export default function Adicao() {
 

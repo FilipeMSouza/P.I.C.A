@@ -1,7 +1,7 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
-import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
+import LogoA from "../assets/placeholders/lena.jpeg";
 import {useState} from 'react';
-
+import React from "react";
 
 
 export default function Adicao() {
@@ -63,19 +63,20 @@ export default function Adicao() {
                         <img className="opcao" src={LogoA} alt="logo" />
                     </Content>
                     <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Multiplicar com</button>
-                        <button onClick={() => handleClick(2)}>Multiplicar com</button>
-                        <button onClick={() => handleClick(3)}>Multiplicar com</button>
-                        <button onClick={() => handleClick(4)}>Multiplicar com</button>
+                        <button onClick={() => handleClick(1)}>Refletir</button>
+                        <button onClick={() => handleClick(2)}>Refletir</button>
+                        <button onClick={() => handleClick(3)}>Refletir</button>
+                        <button onClick={() => handleClick(4)}>Refletir</button>
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
                     <Oparation>
-                        <button onClick={() => handleClick(1)}>Imagem 2</button>
-                        <button onClick={() => handleClick(2)}>Imagem 3</button>
-                        <button onClick={() => handleClick(3)}>Imagem 4</button>
+                        <button onClick={() => handleClick(1)}>de cima</button>
+                        <button onClick={() => handleClick(2)}>de baixo</button>
+                        <button onClick={() => handleClick(3)}>da direita</button>
+                        <button onClick={() => handleClick(3)}>da esqueda</button>
                     </Oparation>
                     <Result>
                         <img className="resultado" src={LogoA} alt="Resultado" />
