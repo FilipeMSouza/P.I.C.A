@@ -7,49 +7,9 @@ import React from "react";
 
 export default function Adicao() {
 
-    const [op1,setOp1] = useState("off")
-    const [op2,setOp2] = useState("off")
-    const [op3,setOp3] = useState("off")
-    const [op4,setOp4] = useState("off")
-
-    function handleClick(param: number){
-        switch(param){
-            case 1:
-                console.log(1)
-                setOp1("on");
-                setOp2("off");
-                setOp3("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            case 2:
-                console.log(2);
-                setOp2("on");
-                setOp1("off");
-                setOp3("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            case 3:
-                console.log(3);
-                setOp3("on");
-                setOp2("off");
-                setOp1("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;  
-            case 4:
-                console.log(4);
-                setOp4("on");
-                setOp2("off");
-                setOp3("off");
-                setOp1("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            default:
-                break;
-            }
-    }
+    const [parm1, setParm1] = useState('')
+    const [parm2, setParm2] = useState('')
+   
 
     return (
       
@@ -64,18 +24,18 @@ export default function Adicao() {
                         <img className="opcao" src={LogoA} alt="logo" />
                     </Content>
                     <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Selecionar imagem</button>
-                        <button onClick={() => handleClick(2)}>Selecionar imagem</button>
-                        <button onClick={() => handleClick(3)}>Selecionar imagem</button>
-                        <button onClick={() => handleClick(4)}>Selecionar imagem</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/lena.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/amongus.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/doggo.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/rayquaza.jpeg')}>Selecionar</button>
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
                     <Oparation>
-                        <button onClick={() => handleClick(1)}>Dmininuir</button>
-                        <button onClick={() => handleClick(2)}>Aumentar</button>
+                        <button onClick={() => {}}>Dmininuir</button>
+                        <button onClick={() => {}}>Aumentar</button>
                     </Oparation>
                     <Result>
                         <img className="resultado" src={LogoA} alt="Resultado" />
