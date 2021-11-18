@@ -2,8 +2,10 @@ import express, { NextFunction } from "express";
 import { nextTick } from "process";
 
 import {
-  multiplyTwoImages,
-  sumTwoImages,
+    multiplyTwoImages,
+    sumTwoImages,
+    divTwoImages,
+    subTwoImages
 } from "../src/modules/image-processing";
 
 const PORT: number = 8048;
@@ -15,7 +17,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get("/sumImages/:image1&:image2", (req: any, res) => {
+app.get("/sum/:image1&:image2", (req: any, res) => {
   let imagePath1: string = req.params["image1"];
   let imagePath2: string = req.params["image2"];
 
@@ -24,7 +26,7 @@ app.get("/sumImages/:image1&:image2", (req: any, res) => {
   );
 });
 
-app.get("/multiplyImages/:image1&:image2", (req: any, res) => {
+app.get("/multiply/:image1&:image2", (req: any, res) => {
   let imagePath1: string = req.params["image1"];
   let imagePath2: string = req.params["image2"];
 
@@ -33,6 +35,30 @@ app.get("/multiplyImages/:image1&:image2", (req: any, res) => {
   );
 });
 
+
+app.get("/subtract/:image1&:image2", (req: any, res) => {
+    let imagePath1: string = req.params["image1"];
+    let imagePath2: string = req.params["image2"];
+
+    return subTwoImages(imagePath1, imagePath2).then((value) =>
+        res.status(200).json({ data: value })
+    );
+});
+
+
+app.get("/divide/:image1&:image2", (req: any, res) => {
+    let imagePath1: string = req.params["image1"];
+    let imagePath2: string = req.params["image2"];
+
+    return divTwoImages(imagePath1, imagePath2).then((value) =>
+        res.status(200).json({ data: value })
+    );
+});
+
+
 app.listen(PORT, () => {
   console.log(`ඞ Server iniciado na porta ${PORT} ඞ`);
 });
+
+
+// TODO: Todas as rotas são iguais, fazer uma rota que recebe a operação como parâmetro!!!
