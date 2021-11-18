@@ -1,6 +1,7 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
-import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
+import LogoA from "../assets/placeholders/lena.jpeg";
 import {useState} from 'react';
+import React from "react";
 
 
 
@@ -63,10 +64,10 @@ export default function Adicao() {
                         <img className="opcao" src={LogoA} alt="logo" />
                     </Content>
                     <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Multiplicar com</button>
-                        <button onClick={() => handleClick(2)}>Multiplicar com</button>
-                        <button onClick={() => handleClick(3)}>Multiplicar com</button>
-                        <button onClick={() => handleClick(4)}>Multiplicar com</button>
+                        <button onClick={() => handleClick(1)}>Divir com</button>
+                        <button onClick={() => handleClick(2)}>Divir com</button>
+                        <button onClick={() => handleClick(3)}>Divir com</button>
+                        <button onClick={() => handleClick(4)}>Divir com</button>
                     </ButtonContent>
 
                 </AuxContainer>

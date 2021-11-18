@@ -1,7 +1,7 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
-import LogoA from "../assets/placeholders/lena_gray_512.jpeg";
+import LogoA from "../assets/placeholders/lena.jpeg";
 import {useState} from 'react';
-
+import React from "react";
 
 
 export default function Adicao() {
@@ -63,19 +63,20 @@ export default function Adicao() {
                         <img className="opcao" src={LogoA} alt="logo" />
                     </Content>
                     <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Somar com</button>
-                        <button onClick={() => handleClick(2)}>Somar com</button>
-                        <button onClick={() => handleClick(3)}>Somar com</button>
-                        <button onClick={() => handleClick(4)}>Somar com</button>
+                        <button onClick={() => handleClick(1)}>Subtrair de</button>
+                        <button onClick={() => handleClick(2)}>Subtrair de</button>
+                        <button onClick={() => handleClick(3)}>Subtrair de</button>
+                        <button onClick={() => handleClick(4)}>Subtrair de</button>
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
                     <Oparation>
-                        <button onClick={() => handleClick(1)}>Imagem 2</button>
-                        <button onClick={() => handleClick(2)}>Imagem 3</button>
-                        <button onClick={() => handleClick(3)}>Imagem 4</button>
+                        <button onClick={() => {}}>Imagem 1</button>
+                        <button onClick={() => {}}>Imagem 2</button>
+                        <button onClick={() => {}}>Imagem 3</button>
+                        <button onClick={() => {}}>Imagem 4</button>
                     </Oparation>
                     <Result>
                         <img className="resultado" src={LogoA} alt="Resultado" />
