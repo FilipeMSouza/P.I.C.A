@@ -12,12 +12,8 @@ enum ImageKind {
 }
 
 export let sumTwoImages = async (image1Base64: string, image2Base64: string) => {
-  let firstImageData = await Image.load(image1Base64).then(
-    (image) => resizeImg(image).grey().data
-  );
-  let secondImageData = await Image.load(image2Base64).then(
-    (image) => resizeImg(image).grey().data
-  );
+  let firstImageData = resizeImg((await Image.load(image1Base64))).grey().data;
+  let secondImageData = resizeImg((await Image.load(image2Base64))).grey().data;
   let newImageData: number[] = new Array(firstImageData.length);
 
   for (let i in firstImageData) {
@@ -35,12 +31,8 @@ export let sumTwoImages = async (image1Base64: string, image2Base64: string) => 
 };
 
 export let multiplyTwoImages = async (image1Base64: string, image2Base64: string) => {
-  let firstImageData = await Image.load(image1Base64).then(
-    (image) => resizeImg(image).grey().data
-  );
-  let secondImageData = await Image.load(image2Base64).then(
-    (image) => resizeImg(image).grey().data
-  );
+  let firstImageData = resizeImg((await Image.load(image1Base64))).grey().data;
+  let secondImageData = resizeImg((await Image.load(image2Base64))).grey().data;
   let newImageData: number[] = new Array(firstImageData.length);
 
   for (let i in firstImageData) {

@@ -10,7 +10,8 @@
     "image-js": "^0.33.1"
   },
   "scripts": {
-    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts"
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
+    "extract-config": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/image-processing.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
