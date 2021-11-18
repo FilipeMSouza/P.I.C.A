@@ -74,9 +74,10 @@ export default function Adicao() {
 
                 <AuxContainer2>
                     <Oparation>
-                        <button onClick={() => handleClick(1)}>Imagem 2</button>
-                        <button onClick={() => handleClick(2)}>Imagem 3</button>
-                        <button onClick={() => handleClick(3)}>Imagem 4</button>
+                        <button onClick={() => {}}>Imagem 1</button>
+                        <button onClick={() => {}}>Imagem 2</button>
+                        <button onClick={() => {}}>Imagem 3</button>
+                        <button onClick={() => {}}>Imagem 4</button>
                     </Oparation>
                     <Result>
                         <img className="resultado" src={LogoA} alt="Resultado" />
