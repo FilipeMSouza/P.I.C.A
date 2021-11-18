@@ -73,13 +73,13 @@ export const Result = styled.div`
     align-items: center;
     margin-top: 1rem;
     margin-left: auto;
-    margin-right: 9.75rem;
+    margin-right: 15.75rem;
     width: 50%;
     img{
         padding: 0.5rem;
         &.resultado{
-            width: 20rem;
-            height: 20rem;
+            width: 35rem;
+            height: 35rem;
         }
     }
 `;
@@ -112,11 +112,5 @@ export const AuxContainer2 = styled.div`
     margin-left: auto;
     margin-right: 1rem;
     width: 50%;
-    img{
-        padding: 0.5rem;
-        &.resultado{
-            width: 20rem;
-            height: 20rem;
-        }
-    }
+    
 `;
