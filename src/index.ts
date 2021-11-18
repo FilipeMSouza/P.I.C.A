@@ -6,7 +6,7 @@ import {
     sumTwoImages,
     divTwoImages,
     subTwoImages
-} from "../src/modules/image-processing";
+} from "../src/modules/operacoes-aritmeticas";
 
 const PORT: number = 8048;
 const app = express();
