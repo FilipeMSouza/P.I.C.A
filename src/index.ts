@@ -32,10 +32,6 @@ app.get("/multiplyImages/:image1&:image2", (req: any, res) => {
     res.status(200).json({ data: value })
   );
 });
-  
-app.get('/', (req: any, res) => {
-    return res.send('adjaisduhaisdhasidasudhaisduhiuahsdiaush')
-  })
 
 app.listen(PORT, () => {
   console.log(`ඞ Server iniciado na porta ${PORT} ඞ`);
