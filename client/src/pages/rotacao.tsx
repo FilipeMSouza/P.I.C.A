@@ -6,7 +6,7 @@ import { api } from '../Services/api';
 
 import RepositoryImage from './repository_image';
 import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpg";
+import Amongus from "../assets/placeholders/amongus.jpeg";
 import Doggo from "../assets/placeholders/doggo.jpeg";
 import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
 interface repository {
