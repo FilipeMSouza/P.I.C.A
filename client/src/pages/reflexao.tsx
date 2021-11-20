@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
 
 import {useEffect, useState} from 'react';
 import { api } from '../Services/api';
@@ -51,12 +51,12 @@ export default function Reflexao() {
                 </AuxContainer>
 
                 <AuxContainer2>
-                    <Oparation>
+                    <Operation>
                     <button onClick={() => setParm2('/client/src/assets/placeholders/lena.jpeg')}>De Cima</button>
                     <button onClick={() => setParm2('/client/src/assets/placeholders/amongus.jpeg')}>De baixo</button>
                     <button onClick={() => setParm2('/client/src/assets/placeholders/doggo.jpeg')}>Da Esquerda</button>
                     <button onClick={() => setParm2('/client/src/assets/placeholders/rayquaza.jpeg')}>Da Direita</button>
-                    </Oparation>
+                    </Operation>
                     <Result>
                        
 

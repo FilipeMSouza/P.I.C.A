@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
 import { useState, useEffect, useCallback } from 'react';
 import { api } from '../Services/api';
 import RepositoryImage from './repository_image';
@@ -52,10 +52,10 @@ export default function Escala() {
                 </AuxContainer>
 
                 <AuxContainer2>
-                    <Oparation>
+                    <Operation>
                         <button onClick={() => {}}>Dmininuir</button>
                         <button onClick={() => {}}>Aumentar</button>
-                    </Oparation>
+                    </Operation>
                     <Result>
                        
 

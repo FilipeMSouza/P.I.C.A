@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
 import { useEffect, useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -51,7 +51,7 @@ export default function Rotacao() {
             </AuxContainer>
 
             <AuxContainer2>
-                <Oparation>
+                <Operation>
                     <Dropdown>
                         <Dropdown.Toggle variant="danger" id="dropdown-basic">
                             Direção
@@ -74,7 +74,7 @@ export default function Rotacao() {
                         </Dropdown.Menu>
                     </Dropdown>
                     
-                </Oparation>
+                </Operation>
                 <Result>
                    
 

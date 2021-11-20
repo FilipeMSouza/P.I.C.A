@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
 
 import {useEffect, useState} from 'react';
 import { api } from '../Services/api';
@@ -50,9 +50,9 @@ export default function Translacao() {
                 </AuxContainer>
 
                 <AuxContainer2>
-                    <Oparation>
+                    <Operation>
                     <button onClick={() => {}}>Translacionar</button>
-                    </Oparation>
+                    </Operation>
                     <Result>
                        
 
