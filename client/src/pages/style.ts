@@ -84,7 +84,7 @@ export const Result = styled.div`
     }
 `;
 
-export const Oparation = styled.div`
+export const Operation = styled.div`
     display: flex;
     flex-direction: row;
     
