@@ -1,5 +1,6 @@
 import { PathLike, promises as fs } from "fs";
 import { Image } from "image-js";
+import { number } from "mathjs";
 
 export let readImageAsBase64 = async (path: string): Promise<string> => {
   return `data:${"image/" + path.split(".").at(-1)};base64,${await fs
@@ -32,3 +33,7 @@ export let normalizeImageData = (
   }
   return imagePixelsArray;
 };
+
+export let clamp = (num: number, limit:number):number => {
+  return num > limit ? limit : num;
+}
