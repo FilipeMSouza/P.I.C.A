@@ -8,7 +8,7 @@ import {
   subTwoImages,
 } from "../src/modules/operacoes-aritmeticas";
 
-import {reflexao, translacao, escala} from "../src/modules/transformacoes-geometricas"
+import {reflexao, translacao, escala, rotacao} from "../src/modules/transformacoes-geometricas"
 
 const PORT: number = 8048;
 const app = express();
@@ -77,8 +77,17 @@ app.get("/translacao/:image&:xOff&:yOff",async (req: any, res) => {
   return res.status(200).json({data: value})
 });
 
+app.get("/rotacao/:image&:theta",async (req: any, res) => {
+  let imagePath: string =req.params['image']
+  let theta: number = req.params['theta']
+
+  const value = await rotacao(imagePath, theta)
+  return res.status(200).json({data: value})
+});
+
 app.listen(PORT, () => {
-  console.log(`ඞ Server iniciado na porta ${PORT} ඞ`);
+  console.log(`ඞ Server iniciado!!!ඞ`);
+  console.log(`ඞ Acesse em: http://localhost:${PORT} ඞ`);
 });
 
 // TODO: Todas as rotas são iguais, fazer uma rota que recebe a operação como parâmetro!!!
