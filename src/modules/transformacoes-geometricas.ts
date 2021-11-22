@@ -128,7 +128,7 @@ export const escala = async (
       );
     }
   }
-  newImage.save("escala.png");
+  return newImage.toBase64()
 };
 
 escala(readImageAsBase64("client/src/assets/placeholders/amongus.jpeg"), 0.1,0.1);
