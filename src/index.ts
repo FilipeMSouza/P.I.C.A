@@ -8,9 +8,9 @@ import {
   subTwoImages,
 } from "../src/modules/operacoes-aritmeticas";
 
-import {reflexao, translacao} from "../src/modules/transformacoes-geometricas"
+import {reflexao, translacao, escala} from "../src/modules/transformacoes-geometricas"
 
-const PORT: number = 8049;
+const PORT: number = 8048;
 const app = express();
 
 app.use(function (req, res, next) {
@@ -60,6 +60,13 @@ app.get("/reflexao/:image", async (req: any, res) => {
   return res.status(200).json({ data: value });
 });
 
+app.get("/escala/:image&:Sx&:Sy", (req: any, res) => {
+  let imagePath: string = req.params["image"];
+  let Sx: number = req.params["Sx"];
+  let Sy: number = req.params["Sy"];
+
+  return escala(imagePath, Sx, Sy).then(value => res.status(200).json({data: value}))
+});
 
 app.get("/translacao/:image&:xOff&:yOff",async (req: any, res) => {
   let imagePath: string =req.params['image']
