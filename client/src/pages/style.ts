@@ -28,8 +28,8 @@ export const Content = styled.div`
         margin-left: .75rem;
         padding: 1rem;
         &.opcao{
-            height: 6rem;
-            width:  6rem;
+            height: 10rem;
+            width:  10rem;
         }
     }
     
@@ -53,8 +53,8 @@ export const ButtonContent = styled.div`
     
 
     button { 
-        margin-top:1.5rem;
-        margin-bottom:1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 4rem;
         margin-left: 0.75rem;
         height: 3rem;
         background: var(--Dark-brown);
@@ -84,7 +84,7 @@ export const Result = styled.div`
     }
 `;
 
-export const Oparation = styled.div`
+export const Operation = styled.div`
     display: flex;
     flex-direction: row;
     
@@ -108,7 +108,7 @@ export const AuxContainer2 = styled.div`
     flex-direction: column;
     
     align-items: center;
-    margin-top: -28rem;
+    margin-top: -40rem;
     margin-left: auto;
     margin-right: 1rem;
     width: 50%;

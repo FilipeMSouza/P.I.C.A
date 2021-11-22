@@ -1,85 +1,64 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
-import LogoA from "../assets/placeholders/lena.jpeg";
-import {useState} from 'react';
-import React from "react";
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
+
+import {useEffect, useState} from 'react';
+import { api } from '../Services/api';
+
+import RepositoryImage from './repository_image';
+import Lena from "../assets/placeholders/lena.jpeg";
+import Amongus from "../assets/placeholders/amongus.jpeg";
+import Doggo from "../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+interface repository {
+    name: string,
+    where: string,
+
+}
 
 
-export default function Adicao() {
+export default function Reflexao() {
 
-    const [op1,setOp1] = useState("off")
-    const [op2,setOp2] = useState("off")
-    const [op3,setOp3] = useState("off")
-    const [op4,setOp4] = useState("off")
-
-    function handleClick(param: number){
-        switch(param){
-            case 1:
-                console.log(1)
-                setOp1("on");
-                setOp2("off");
-                setOp3("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            case 2:
-                console.log(2);
-                setOp2("on");
-                setOp1("off");
-                setOp3("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            case 3:
-                console.log(3);
-                setOp3("on");
-                setOp2("off");
-                setOp1("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;  
-            case 4:
-                console.log(4);
-                setOp4("on");
-                setOp2("off");
-                setOp3("off");
-                setOp1("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            default:
-                break;
-            }
-    }
+    const [parm1, setParm1] = useState('')
+    const [parm2, setParm2] = useState('')
+    const [btn, setBtn] = useState<repository[]>([])
+    const imageData = [
+        { name: "Lena", where: Lena, },
+        { name: "Amongus", where: Amongus, },
+        { name: "Doggo", where: Doggo, },
+        { name: "MegaRayquaza", where: MegaRayquaza, }
+    ];
+    useEffect(() => {
+        setBtn(imageData)
+    }, []);
 
     return (
       
             <Container>
-                <h1>Operação de Adição entre duas imagens</h1>
-                <p>Essa função soma duas imagens resultando em outra</p>
                 <AuxContainer>
                     <Content>
-                        <img className="opcao" src={LogoA} alt="logo" />
-                        <img className="opcao" src={LogoA} alt="logo" />
-                        <img className="opcao" src={LogoA} alt="logo" />
-                        <img className="opcao" src={LogoA} alt="logo" />
+                    {btn.map(img => {
+                        return (
+                            <RepositoryImage key={img.name} imgData={img} />
+                        )
+                    })}
                     </Content>
                     <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Refletir</button>
-                        <button onClick={() => handleClick(2)}>Refletir</button>
-                        <button onClick={() => handleClick(3)}>Refletir</button>
-                        <button onClick={() => handleClick(4)}>Refletir</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/lena.jpeg')}>Refletir</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/amongus.jpeg')}>Refletir</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/doggo.jpeg')}>Refletir</button>
+                    <button onClick={() => setParm1('/client/src/assets/placeholders/rayquaza.jpeg')}>Refletir</button>
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
-                    <Oparation>
-                        <button onClick={() => handleClick(1)}>de cima</button>
-                        <button onClick={() => handleClick(2)}>de baixo</button>
-                        <button onClick={() => handleClick(3)}>da direita</button>
-                        <button onClick={() => handleClick(3)}>da esqueda</button>
-                    </Oparation>
+                    <Operation>
+                    <button onClick={() => setParm2('/client/src/assets/placeholders/lena.jpeg')}>De Cima</button>
+                    <button onClick={() => setParm2('/client/src/assets/placeholders/amongus.jpeg')}>De baixo</button>
+                    <button onClick={() => setParm2('/client/src/assets/placeholders/doggo.jpeg')}>Da Esquerda</button>
+                    <button onClick={() => setParm2('/client/src/assets/placeholders/rayquaza.jpeg')}>Da Direita</button>
+                    </Operation>
                     <Result>
-                        <img className="resultado" src={LogoA} alt="Resultado" />
+                       
 
                     </Result>
                 </AuxContainer2>

@@ -1,93 +1,91 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Oparation, AuxContainer2 } from "./style"
-import LogoA from "../assets/placeholders/lena.jpeg";
-import {useState} from 'react';
-import React from "react";
+import { useEffect, useState } from 'react';
 
+import { api } from '../Services/api';
 
+import RepositoryImage from './repository_image';
 
-export default function Adicao() {
+import Lena from "../assets/placeholders/lena.jpeg";
+import Amongus from "../assets/placeholders/amongus.jpeg";
+import Doggo from "../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
 
-    const [op1,setOp1] = useState("off")
-    const [op2,setOp2] = useState("off")
-    const [op3,setOp3] = useState("off")
-    const [op4,setOp4] = useState("off")
+import {
+    Container,
+    Content,
+    AuxContainer,
+    ButtonContent,
+    Result,
+    Operation,
+    AuxContainer2
+} from "./style"
+interface repository {
+    name: string,
+    where: string,
 
-    function handleClick(param: number){
-        switch(param){
-            case 1:
-                console.log(1)
-                setOp1("on");
-                setOp2("off");
-                setOp3("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            case 2:
-                console.log(2);
-                setOp2("on");
-                setOp1("off");
-                setOp3("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            case 3:
-                console.log(3);
-                setOp3("on");
-                setOp2("off");
-                setOp1("off");
-                setOp4("off");
-                console.log(op1,op2,op3,op4);
-                break;  
-            case 4:
-                console.log(4);
-                setOp4("on");
-                setOp2("off");
-                setOp3("off");
-                setOp1("off");
-                console.log(op1,op2,op3,op4);
-                break;
-            default:
-                break;
-            }
+}
+
+export default function Divisao() {
+    const [param1, setParam1] = useState('')
+    const [param2, setParam2] = useState('')
+    const [result, setResult] = useState('')
+
+    const DivideTwoImages = async () => {
+        const { data } = await api.get('divide/' + param1 + '&' + param2)
+        setResult(data.data)
     }
 
+    const btn = [
+        { name: "Lena", where: Lena, },
+        { name: "Amongus", where: Amongus, },
+        { name: "Doggo", where: Doggo, },
+        { name: "MegaRayquaza", where: MegaRayquaza, }
+    ];
+
+    const urlPaths = [
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+    ]
+
+    function callSum(params: number) {
+        const second = urlPaths[params - 1]
+        setParam2(second)
+    }
+
+    useEffect(() => {
+        param1.length !== 0 && param2.length !== 0 && DivideTwoImages()
+    }, [param1, param2])
+
     return (
-      
-            <Container>
-                <h1>Operação de Adição entre duas imagens</h1>
-                <p>Essa função soma duas imagens resultando em outra</p>
-                <AuxContainer>
-                    <Content>
-                        <img className="opcao" src={LogoA} alt="logo" />
-                        <img className="opcao" src={LogoA} alt="logo" />
-                        <img className="opcao" src={LogoA} alt="logo" />
-                        <img className="opcao" src={LogoA} alt="logo" />
-                    </Content>
-                    <ButtonContent>
-                        <button onClick={() => handleClick(1)}>Divir com</button>
-                        <button onClick={() => handleClick(2)}>Divir com</button>
-                        <button onClick={() => handleClick(3)}>Divir com</button>
-                        <button onClick={() => handleClick(4)}>Divir com</button>
-                    </ButtonContent>
-
-                </AuxContainer>
-
-                <AuxContainer2>
-                    <Oparation>
-                        <button onClick={() => {}}>Imagem 1</button>
-                        <button onClick={() => {}}>Imagem 2</button>
-                        <button onClick={() => {}}>Imagem 3</button>
-                        <button onClick={() => {}}>Imagem 4</button>
-                    </Oparation>
-                    <Result>
-                        <img className="resultado" src={LogoA} alt="Resultado" />
-
-                    </Result>
-                </AuxContainer2>
-
-            </Container>
-    
-
+        <Container>
+            <AuxContainer>
+                <Content>
+                    {btn.map(img => {
+                        return (
+                            <RepositoryImage key={img.name} imgData={img} />
+                        )
+                    })}
+                </Content>
+                <ButtonContent>
+                    {urlPaths.map(img =>
+                        <button key={img} onClick={() => setParam1(img)}>Dividir por</button>
+                    )}
+                </ButtonContent>
+            </AuxContainer>
+            <AuxContainer2>
+                <Operation>
+                    {
+                        [1, 2, 3, 4].map(number =>
+                            <button key={number} onClick={() => callSum(number)}>Imagem {number}</button>
+                        )
+                    }
+                </Operation>
+                <Result>
+                    <img className="resultado" src={result} alt="Resultado" />
+                </Result>
+            </AuxContainer2>
+        </Container>
     );
 }
 
