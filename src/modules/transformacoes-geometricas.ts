@@ -59,8 +59,8 @@ export const translacao = async (
     for (let j = 0; j <= newImage.height - 1; j++) {
       let matrixCalc = math.multiply(translationMatrix, [i, j, 1]);
       newImage.setPixelXY(
-        matrixCalc[0],
-        matrixCalc[1],
+        clamp(Math.floor(matrixCalc[0]), newImage.width),
+        clamp(Math.floor(matrixCalc[1]), newImage.width),
         oldImage.getPixelXY(i, j)
       );
     }
@@ -85,7 +85,7 @@ export const reflexao = async (imageBase64: string): Promise<string> => {
   });
 
   for (let i = 0; i <= newImage.width - 1; i++) {
-    for (let j = 0; j <= newImage.height - 1; j++) {
+    for (let j = 0; j <= newImage.height - 1;j++) {
       let matrixCalc = math.multiply(MATRIX_REFLECTION, [i, j, 1]);
       newImage.setPixelXY(
         i,
@@ -130,5 +130,3 @@ export const escala = async (
   }
   return newImage.toBase64()
 };
-
-escala(readImageAsBase64("client/src/assets/placeholders/amongus.jpeg"), 0.1,0.1);
