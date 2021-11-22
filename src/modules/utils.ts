@@ -27,13 +27,17 @@ export let normalizeImageData = (
 ): Array<number> => {
   let [min, max] = getExtremesFromArray(imagePixelsArray);
 
-  for(let i in imagePixelsArray){
-    imagePixelsArray[i] =  Math.round(255 / (max - min) * (imagePixelsArray[i] - min))
-
+  for (let i in imagePixelsArray) {
+    imagePixelsArray[i] = Math.round(
+      (255 / (max - min)) * (imagePixelsArray[i] - min)
+    );
   }
   return imagePixelsArray;
 };
 
-export let clamp = (num: number, limit:number):number => {
+export let clamp = (num: number, limit: number): number => {
   return num > limit ? limit : num;
-}
+};
+
+export const degreeToRadian = (degrees: number): number =>
+  degrees * (Math.PI / 180);
