@@ -71,7 +71,7 @@ export const translacao = async (
       );
     }
   }
-  return newImage.toBase64();
+  return newImage.toDataURL();
 };
 
 export const reflexao = async (imageBase64: string): Promise<string> => {
@@ -100,7 +100,7 @@ export const reflexao = async (imageBase64: string): Promise<string> => {
       );
     }
   }
-  return newImage.toBase64();
+  return newImage.toDataURL();
 };
 
 // No momento,falta interplação, ISSO É UM TODO!!!!
@@ -138,7 +138,7 @@ export const escala = async (
       );
     }
   }
-  return newImage.toBase64();
+  return newImage.toDataURL();
 };
 
 export const rotacao = async (
@@ -197,6 +197,6 @@ export const rotacao = async (
       }
     }
   }
-  return newImage.toBase64()
+  return newImage.toDataURL()
 };
 
