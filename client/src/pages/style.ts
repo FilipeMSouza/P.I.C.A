@@ -53,8 +53,8 @@ export const ButtonContent = styled.div`
     
 
     button { 
-        margin-top: 3rem;
-        margin-bottom: 4rem;
+        margin-top: 4rem;
+        margin-bottom: 5rem;
         margin-left: 0.75rem;
         height: 3rem;
         background: var(--Dark-brown);
@@ -101,6 +101,21 @@ export const Operation = styled.div`
         border-color: var(--Dark-brown);
         box-shadow: none;
     }
+
+    form { 
+        display: flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+        
+    }
+    label { 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: var(--text-title);
+        
+    }
+
 `;
 
 export const AuxContainer2 = styled.div`
@@ -108,7 +123,7 @@ export const AuxContainer2 = styled.div`
     flex-direction: column;
     
     align-items: center;
-    margin-top: -40rem;
+    margin-top: -48rem;
     margin-left: auto;
     margin-right: 1rem;
     width: 50%;

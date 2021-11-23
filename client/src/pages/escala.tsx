@@ -16,8 +16,16 @@ interface repository {
 
 export default function Escala() {
 
-    const [parm1, setParm1] = useState('')
-    const [parm2, setParm2] = useState('')
+    const [param1, setParam1] = useState('')
+    const [param2, setParam2] = useState('')
+    const [param3, setParam3] = useState('')
+    const [result, setResult] = useState('')
+
+    const scaleImage = async () => {
+        const {data} = await api.get('escala/' + param1 + '&' + param2 + '&' + param3)
+        setResult(data.data)
+    }
+
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
@@ -43,18 +51,26 @@ export default function Escala() {
                     })}
                     </Content>
                     <ButtonContent>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/lena.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/amongus.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/doggo.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/rayquaza.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParam1('/client/src/assets/placeholders/lena.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParam1('/client/src/assets/placeholders/amongus.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParam1('/client/src/assets/placeholders/doggo.jpeg')}>Selecionar</button>
+                    <button onClick={() => setParam1('/client/src/assets/placeholders/rayquaza.jpeg')}>Selecionar</button>
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
-                    <Operation>
-                        <button onClick={() => {}}>Dmininuir</button>
-                        <button onClick={() => {}}>Aumentar</button>
+                <Operation>
+                    <form>
+                        <label>
+                            Fator eixo X:
+                            <input type="number" name="X_Axis" id="X_Axis" onChange={()=>{}}/>
+                        </label>
+                        <label>
+                            Fator eixo Y:
+                            <input type="number" name="Y_Axix" id="Y_Axis" onChange={()=>{}}/>
+                        </label>
+                    </form>
                     </Operation>
                     <Result>
                        

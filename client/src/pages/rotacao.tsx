@@ -17,8 +17,15 @@ interface repository {
 
 export default function Rotacao() {
 
-    const [parm1, setParm1] = useState('')
-    const [parm2, setParm2] = useState('')
+    const [param1, setParam1] = useState('')
+    const [angle, setAngle] = useState()
+    const [result, setResult] = useState('')
+
+    const rotateImage = async () => {
+        const {data} = await api.get('rotacao/' + param1 + '&' + angle)
+        setResult(data.data)
+    }
+
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
@@ -29,6 +36,13 @@ export default function Rotacao() {
     useEffect(() => {
         setBtn(imageData)
     }, []);
+
+    const urlPaths = [
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+    ]
 
     return (
 
@@ -42,10 +56,9 @@ export default function Rotacao() {
                     })}
                 </Content>
                 <ButtonContent>
-                <button onClick={() => setParm1('/client/src/assets/placeholders/lena.jpeg')}>Rotacionar à</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/amongus.jpeg')}>Rotacionar à</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/doggo.jpeg')}>Rotacionar à</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/rayquaza.jpeg')}>Rotacionar à</button>
+                    {urlPaths.map(img =>
+                        <button key={img} onClick={() => setParam1(img)}>Rotaconar</button>
+                    )}
                 </ButtonContent>
 
             </AuxContainer>
@@ -54,23 +67,18 @@ export default function Rotacao() {
                 <Operation>
                     <Dropdown>
                         <Dropdown.Toggle variant="danger" id="dropdown-basic">
-                            Direção
-                        </Dropdown.Toggle>
-
-                        <Dropdown.Menu>
-                            <Dropdown.Item >Esqueda</Dropdown.Item>
-                            <Dropdown.Item >Direita</Dropdown.Item>
-                            
-                        </Dropdown.Menu>
-                    </Dropdown>
-                    <Dropdown>
-                        <Dropdown.Toggle variant="danger" id="dropdown-basic">
                             Graus
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item >90</Dropdown.Item>
-                            <Dropdown.Item >180</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>90</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>180</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>270</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>360</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>-90</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>-180</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>-270</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{}}>-360</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                     

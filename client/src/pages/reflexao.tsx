@@ -17,8 +17,8 @@ interface repository {
 
 export default function Reflexao() {
 
-    const [parm1, setParm1] = useState('')
-    const [parm2, setParm2] = useState('')
+    const [param, setParam] = useState('')
+    const [result, setResult] = useState('')
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
@@ -29,6 +29,23 @@ export default function Reflexao() {
     useEffect(() => {
         setBtn(imageData)
     }, []);
+
+    const urlPaths = [
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+    ]
+
+    const reflectImage = async () => {
+        const {data} = await api.get('reflexao/' + param)
+        setResult(data.data)
+        console.log(data.data)
+    }
+
+    useEffect(() => {
+        param.length !== 0 && reflectImage()
+    }, [param])
 
     return (
       
@@ -42,24 +59,16 @@ export default function Reflexao() {
                     })}
                     </Content>
                     <ButtonContent>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/lena.jpeg')}>Refletir</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/amongus.jpeg')}>Refletir</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/doggo.jpeg')}>Refletir</button>
-                    <button onClick={() => setParm1('/client/src/assets/placeholders/rayquaza.jpeg')}>Refletir</button>
+                        {urlPaths.map(img =>
+                            <button key={img} onClick={() => setParam(img)}>Refletir</button>
+                        )}
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
-                    <Operation>
-                    <button onClick={() => setParm2('/client/src/assets/placeholders/lena.jpeg')}>De Cima</button>
-                    <button onClick={() => setParm2('/client/src/assets/placeholders/amongus.jpeg')}>De baixo</button>
-                    <button onClick={() => setParm2('/client/src/assets/placeholders/doggo.jpeg')}>Da Esquerda</button>
-                    <button onClick={() => setParm2('/client/src/assets/placeholders/rayquaza.jpeg')}>Da Direita</button>
-                    </Operation>
                     <Result>
-                       
-
+                        <img className="resultado" src={result} alt="Resultado" />
                     </Result>
                 </AuxContainer2>
 

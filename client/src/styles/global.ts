@@ -41,7 +41,7 @@ export const GlobalStyle = createGlobalStyle`
         font-weight: 400;
     }
 
-    h1, h2, h3, h4, h5, h6, strong{
+    h1, h2, h3, h4, h5, h6, strong, label{
         font-family: 'Poppins', sans-serif;
         font-weight: 600;
     } 
@@ -53,5 +53,27 @@ export const GlobalStyle = createGlobalStyle`
         opacity: 0.6;
         cursor: not-allowed;
     }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input { 
+        margin-bottom:2rem;
+        margin-left: 0.75rem;
+        height: 3rem;
+        background: var(--background);
+        border-radius: .4rem;
+        border: .09rem solid black;
+        box-shadow: .1rem .2rem .2rem black;
+        text-align: center;
+        
+    }
+    input:focus {
+        outline: none;
+    }
+
 }
 `;
