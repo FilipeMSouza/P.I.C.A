@@ -41,3 +41,7 @@ export let clamp = (num: number, limit: number): number => {
 
 export const degreeToRadian = (degrees: number): number =>
   degrees * (Math.PI / 180);
+
+export const getLookUpTable = (data: number[]): Object[] => data.map(
+  (value: number, idx: number) => new Object({ idx: idx, value: value })
+)
