@@ -18,11 +18,12 @@ interface repository {
 export default function Rotacao() {
 
     const [param1, setParam1] = useState('')
-    const [angle, setAngle] = useState()
+    const [angle, setAngle] = useState<number>()
     const [result, setResult] = useState('')
 
     const rotateImage = async () => {
-        const {data} = await api.get('rotacao/' + param1 + '&' + angle)
+        const theta = angle?.toString()
+        const {data} = await api.get('rotacao/' + param1 + '&' + theta)
         setResult(data.data)
     }
 
@@ -36,6 +37,10 @@ export default function Rotacao() {
     useEffect(() => {
         setBtn(imageData)
     }, []);
+
+    useEffect(() => {
+        param1.length !== 0 && angle !== 0 && rotateImage()
+    }, [param1, angle]);
 
     const urlPaths = [
         'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
@@ -71,21 +76,20 @@ export default function Rotacao() {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                            <Dropdown.Item onClick={()=>{}}>90</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>180</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>270</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>360</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>-90</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>-180</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>-270</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{}}>-360</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(90)}}>90</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(180)}}>180</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(270)}}>270</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(360)}}>360</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(-90)}}>-90</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(-180)}}>-180</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(-270)}}>-270</Dropdown.Item>
+                            <Dropdown.Item onClick={()=>{setAngle(-360)}}>-360</Dropdown.Item>
                         </Dropdown.Menu>
                     </Dropdown>
                     
                 </Operation>
                 <Result>
-                   
-
+                    <img className="resultado" src={result} alt="Resultado" /> 
                 </Result>
             </AuxContainer2>
 

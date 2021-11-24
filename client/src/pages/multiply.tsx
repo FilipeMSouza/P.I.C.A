@@ -18,11 +18,6 @@ import {
     Operation,
     AuxContainer2
 } from "./style"
-interface repository {
-    name: string,
-    where: string,
-
-}
 
 
 export default function Multiplicacao() {

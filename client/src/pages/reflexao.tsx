@@ -40,7 +40,6 @@ export default function Reflexao() {
     const reflectImage = async () => {
         const {data} = await api.get('reflexao/' + param)
         setResult(data.data)
-        console.log(data.data)
     }
 
     useEffect(() => {

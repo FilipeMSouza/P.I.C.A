@@ -18,12 +18,6 @@ import {
     Operation,
     AuxContainer2
 } from "./style"
-interface repository {
-    name: string,
-    where: string,
-
-}
-
 
 export default function Subtracao() {
     const [param1, setParam1] = useState('')

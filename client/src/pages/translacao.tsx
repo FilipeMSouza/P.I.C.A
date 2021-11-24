@@ -1,6 +1,6 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
 
-import {useEffect, useState} from 'react';
+import {SetStateAction, useEffect, useState} from 'react';
 import { api } from '../Services/api';
 
 import RepositoryImage from './repository_image';
@@ -14,19 +14,20 @@ interface repository {
 
 }
 
-export default function Translacao() {
+export default function Translacao(this: any) {
 
-    let X_Axis= 0;
-    let Y_Axis= 0;
-
+    var field1 = 0;
+    var field2 = 0;
     const [param1, setParam1] = useState('')
-    const [paramX, setParamX] = useState(X_Axis)
-    const [paramY, setParamY] = useState(Y_Axis)
+    const [paramX, setParamX] = useState('')
+    const [paramY, setParamY] = useState('')
 
     const [result, setResult] = useState('')
 
     const translacImage = async () => {
-        const {data} = await api.get('translacao/' + param1 + '&' + paramX + '&' + paramY)
+        var X_Axis = paramX?.toString()
+        var Y_Axis = paramY?.toString()
+        const {data} = await api.get('translacao/' + param1 + '&' + X_Axis + '&' + Y_Axis)
         setResult(data.data)
     }
 
@@ -41,6 +42,23 @@ export default function Translacao() {
         setBtn(imageData)
     }, []);
 
+    useEffect(() => {
+        param1.length !== 0 && paramX.length !== 0 && paramY.length !== 0 && translacImage()
+    }, [param1, paramX, paramY]);
+
+
+    const urlPaths = [
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+    ]
+
+    const input=[
+        {Axis: 'X', value: 0, text :"0"},
+        {Axis: 'Y', value: 0, text :"0"}
+    ]
+
     return (
       
             <Container>
@@ -53,32 +71,36 @@ export default function Translacao() {
                     })}
                     </Content>
                     <ButtonContent>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/lena.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/amongus.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/doggo.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/rayquaza.jpeg')}>Selecionar</button>
+                    {urlPaths.map(img =>
+                        <button onClick={() => setParam1(img)}>Somar com</button>
+                    )}
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
                     <Operation>
-                    <form>
-                        <label>
-                            Fator eixo X:
-                            <input type="number" name="X_Axis" id="X_Axis" onChange={()=>{}}/>
-                        </label>
-                        <label>
-                            Fator eixo Y:
-                            <input type="number" name="Y_Axix" id="Y_Axis" onChange={()=>{}}/>
-                        </label>
-                    </form>
+                        {input.map(inp =>
+                            <label>
+                                Fator eixo {inp.Axis}:
+                                <input type="number" placeholder={inp.text} onChange={e=> {
+                                    if(inp.Axis === 'X'){
+                                        console.log(paramX)
+                                        setParamX(e.target.value);
+                                    }
+                                else{
+                                    setParamY(e.target.value);
+                                        console.log(paramY)
+                                }}}/>
+                            </label>
+                        )}
+                    
                     </Operation>
                     
                     <Result>
-                       
-
+                        <img className="resultado" src={result} alt="Resultado" />
                     </Result>
+
                 </AuxContainer2>
 
             </Container>

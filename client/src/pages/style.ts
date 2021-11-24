@@ -54,7 +54,7 @@ export const ButtonContent = styled.div`
 
     button { 
         margin-top: 4rem;
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
         margin-left: 0.75rem;
         height: 3rem;
         background: var(--Dark-brown);
@@ -100,6 +100,9 @@ export const Operation = styled.div`
         color: var(--light-brown);
         border-color: var(--Dark-brown);
         box-shadow: none;
+        &.translacao{
+            margin-top:1.495rem;
+        }
     }
 
     form { 
@@ -113,7 +116,10 @@ export const Operation = styled.div`
         flex-direction: column;
         align-items: center;
         color: var(--text-title);
-        
+    }
+
+    button{
+        margin-top: 1.5rem;
     }
 
 `;
@@ -123,7 +129,7 @@ export const AuxContainer2 = styled.div`
     flex-direction: column;
     
     align-items: center;
-    margin-top: -48rem;
+    margin-top: -40rem;
     margin-left: auto;
     margin-right: 1rem;
     width: 50%;

@@ -26,6 +26,10 @@ export default function Escala() {
         setResult(data.data)
     }
 
+    useEffect(() => {
+        param1.length !== 0 && param2.length !== 0 && param3.length !== 0 && scaleImage()
+    }, [param1, param2, param3]);
+
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
@@ -37,7 +41,17 @@ export default function Escala() {
         setBtn(imageData)
     }, []);
 
-   
+    const urlPaths = [
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+    ]
+
+    const input=[
+        {Axis: 'X', value: 0, text :"0"},
+        {Axis: 'Y', value: 0, text :"0"}
+    ]
 
     return (
       
@@ -51,30 +65,32 @@ export default function Escala() {
                     })}
                     </Content>
                     <ButtonContent>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/lena.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/amongus.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/doggo.jpeg')}>Selecionar</button>
-                    <button onClick={() => setParam1('/client/src/assets/placeholders/rayquaza.jpeg')}>Selecionar</button>
+                    {urlPaths.map(img =>
+                        <button key={img} onClick={() => setParam1(img)}>Somar com</button>
+                    )}
                     </ButtonContent>
 
                 </AuxContainer>
 
                 <AuxContainer2>
                 <Operation>
-                    <form>
-                        <label>
-                            Fator eixo X:
-                            <input type="number" name="X_Axis" id="X_Axis" onChange={()=>{}}/>
-                        </label>
-                        <label>
-                            Fator eixo Y:
-                            <input type="number" name="Y_Axix" id="Y_Axis" onChange={()=>{}}/>
-                        </label>
-                    </form>
+                {input.map(inp =>
+                            <label>
+                                Fator eixo {inp.Axis}:
+                                <input type="number" placeholder={inp.text} onChange={e=> {
+                                    if(inp.Axis === 'X'){
+                                        console.log(param2)
+                                        setParam2(e.target.value);
+                                    }
+                                else{
+                                    setParam3(e.target.value);
+                                        console.log(param3)
+                                }}}/>
+                            </label>
+                        )}
                     </Operation>
                     <Result>
-                       
-
+                    <img className="resultado" src={result} alt="Resultado" />
                     </Result>
                 </AuxContainer2>
 
