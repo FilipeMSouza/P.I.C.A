@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2 } from "./style"
 
 import {useEffect, useState} from 'react';
 import { api } from '../Services/api';

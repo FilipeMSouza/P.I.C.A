@@ -8,7 +8,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "image-js": "^0.33.1",
-    "mathjs": "^10.0.0"
+    "mathjs": "^10.0.0",
+    "node-sass": "^6.0.1",
+    "sass": "^1.43.4"
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",

@@ -1,13 +1,14 @@
 import { Container } from "./styles";
 import { useNavigate } from 'react-router-dom';
-import React from "react";
+import Dropdown from 'react-bootstrap/Dropdown';
 
-export function Button() {
+
+export function Buttons() {
 
     let navigate = useNavigate();
 
     const redirectAd = () => {
-      navigate('/adicao')
+        navigate('/adicao')
     }
     const redirectSub = () => {
         navigate('/subtracao')
@@ -32,16 +33,37 @@ export function Button() {
     }
     return (
         <Container>
-            <button onClick={redirectAd}> Adiçao </button>
-            <button onClick={redirectSub}> Subtração </button>
-            <button onClick={redirectMult}> Multiplicação  </button>
-            <button onClick={redirectDiv}> Divisão  </button>
-            <button onClick={redirectTrans}> Translação </button>
-            <button onClick={redirectRot}> Rotação </button>
-            <button onClick={redirectEsc}> Escala </button>
-            <button onClick={redirectRef}> Reflexão </button>
-            
+            <Dropdown>
+                <Dropdown.Toggle variant = "danger">
+                    Operações Aritimeticas
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={redirectAd}> Adiçao </Dropdown.Item>
+                    <Dropdown.Item onClick={redirectSub}> Subtração </Dropdown.Item>
+                    <Dropdown.Item onClick={redirectMult}> Multiplicação  </Dropdown.Item>
+                    <Dropdown.Item onClick={redirectDiv}> Divisão  </Dropdown.Item>
+
+                </Dropdown.Menu>
+            </Dropdown>
+
+
+            <Dropdown>
+                <Dropdown.Toggle variant = "danger">
+                    Operações Geométricas
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item onClick={redirectTrans}> Translação </Dropdown.Item>
+                    <Dropdown.Item onClick={redirectRot}> Rotação </Dropdown.Item>
+                    <Dropdown.Item onClick={redirectEsc}> Escala </Dropdown.Item>
+                    <Dropdown.Item onClick={redirectRef}> Reflexão </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
+            <button> Histogramas </button>
 
         </Container>
+
     );
 }

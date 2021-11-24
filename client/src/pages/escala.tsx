@@ -1,5 +1,5 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { api } from '../Services/api';
 import RepositoryImage from './repository_image';
 import Lena from "../assets/placeholders/lena.jpeg";
@@ -66,7 +66,7 @@ export default function Escala() {
                     </Content>
                     <ButtonContent>
                     {urlPaths.map(img =>
-                        <button key={img} onClick={() => setParam1(img)}>Somar com</button>
+                        <button key={img} onClick={() => setParam1(img)}>Mudar escala</button>
                     )}
                     </ButtonContent>
 

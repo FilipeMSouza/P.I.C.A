@@ -1,6 +1,6 @@
 import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
 
-import {SetStateAction, useEffect, useState} from 'react';
+import { useEffect, useState} from 'react';
 import { api } from '../Services/api';
 
 import RepositoryImage from './repository_image';
@@ -16,8 +16,6 @@ interface repository {
 
 export default function Translacao(this: any) {
 
-    var field1 = 0;
-    var field2 = 0;
     const [param1, setParam1] = useState('')
     const [paramX, setParamX] = useState('')
     const [paramY, setParamY] = useState('')
@@ -72,7 +70,7 @@ export default function Translacao(this: any) {
                     </Content>
                     <ButtonContent>
                     {urlPaths.map(img =>
-                        <button onClick={() => setParam1(img)}>Somar com</button>
+                        <button onClick={() => setParam1(img)}>Trasnlacionar</button>
                     )}
                     </ButtonContent>
 
