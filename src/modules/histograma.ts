@@ -76,7 +76,7 @@ export const histogramaEqualizado = async (imageBase64: string, toImage:boolean=
   return toImage ? lookUpTableObjects: getLookUpTable(valsTable);
 };
 
-const equalizarImagem = async (imageBase64: string  ) => {
+export const equalizarImagem = async (imageBase64: string  ) => {
   let oImage: Image = resizeImg(await Image.load(imageBase64)).grey();
   let newImage: Image = new Image({
     width: oImage.width,

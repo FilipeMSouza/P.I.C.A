@@ -8,7 +8,19 @@ import {
   subTwoImages,
 } from "../src/modules/operacoes-aritmeticas";
 
-import {reflexao, translacao, escala, rotacao} from "../src/modules/transformacoes-geometricas"
+import {
+  reflexao,
+  translacao,
+  escala,
+  rotacao,
+} from "../src/modules/transformacoes-geometricas";
+
+import {
+  histograma,
+  histogramaEqualizado,
+  histogramaNormalizado,
+  equalizarImagem
+} from "../src/modules/histograma";
 
 const PORT: number = 8048;
 const app = express();
@@ -55,7 +67,7 @@ app.get("/divide/:image1&:image2", async (req: any, res) => {
 });
 
 app.get("/reflexao/:image", async (req: any, res) => {
-  let imagePath: string = req.params['image']
+  let imagePath: string = req.params["image"];
   const value = await reflexao(imagePath);
   return res.status(200).json({ data: value });
 });
@@ -65,25 +77,54 @@ app.get("/escala/:image&:Sx&:Sy", (req: any, res) => {
   let Sx: number = req.params["Sx"];
   let Sy: number = req.params["Sy"];
 
-  return escala(imagePath, Sx, Sy).then(value => res.status(200).json({data: value}))
+  return escala(imagePath, Sx, Sy).then((value) =>
+    res.status(200).json({ data: value })
+  );
 });
 
-app.get("/translacao/:image&:xOff&:yOff",async (req: any, res) => {
-  let imagePath: string =req.params['image']
-  let xOffset: number = req.params['xOff']
-  let yOffset: number = req.params['yOff']
+app.get("/translacao/:image&:xOff&:yOff", async (req: any, res) => {
+  let imagePath: string = req.params["image"];
+  let xOffset: number = req.params["xOff"];
+  let yOffset: number = req.params["yOff"];
 
-  const value = await translacao(imagePath, xOffset,yOffset)
-  return res.status(200).json({data: value})
+  const value = await translacao(imagePath, xOffset, yOffset);
+  return res.status(200).json({ data: value });
 });
 
-app.get("/rotacao/:image&:theta",async (req: any, res) => {
-  let imagePath: string =req.params['image']
-  let theta: number = req.params['theta']
+app.get("/rotacao/:image&:theta", async (req: any, res) => {
+  let imagePath: string = req.params["image"];
+  let theta: number = req.params["theta"];
 
-  const value = await rotacao(imagePath, theta)
-  return res.status(200).json({data: value})
+  const value = await rotacao(imagePath, theta);
+  return res.status(200).json({ data: value });
 });
+
+app.get("/histograma/:tipo&:imagePath", async (req: any, res) => {
+  let tipo: string = req.params["tipo"];
+  let imagePath: string = req.params["imagePath"];
+
+  let data;
+
+  switch (tipo) {
+    case "normalizado":
+      data = await histogramaNormalizado(imagePath, true);
+      break;
+    case "equalizado":
+      data = await histogramaEqualizado(imagePath);
+      break;
+    default:
+      data = await histograma(imagePath, true);
+  }
+  return res.status(200).json({data: data})
+});
+
+app.get("/imagemEqualizada/:imagePath", async (req: any, res) => {
+  let imagePath: string = req.params['imagePath']
+
+  const result = await equalizarImagem(imagePath);
+  return res.status(200).json({data: res})
+
+})
 
 app.listen(PORT, () => {
   console.log(`ඞ Server iniciado!!!ඞ`);
