@@ -18,7 +18,8 @@ import {
   histograma,
   histogramaEqualizado,
   histogramaNormalizado,
-  equalizarImagem
+  equalizarImagem,
+  contrastStretching
 } from "../src/modules/histograma";
 
 const PORT: number = 8048;
@@ -121,8 +122,15 @@ app.get("/imagemEqualizada/:imagePath", async (req: any, res) => {
   let imagePath: string = req.params['imagePath']
 
   const result = await equalizarImagem(imagePath);
-  return res.status(200).json({data: res})
+  return res.status(200).json({data: result})
 
+})
+
+app.get("/contrastStretching/:imagePath", async (req: any, res ) => {
+  let imagePath: string = req.params['imagePath']
+
+  const result  = await contrastStretching(imagePath);
+  return res.status(200).json({data: result}) 
 })
 
 app.listen(PORT, () => {
