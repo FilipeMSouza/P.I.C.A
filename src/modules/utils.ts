@@ -11,7 +11,7 @@ export let readImageAsBase64 = async (path: string): Promise<string> => {
 export let resizeImg = (image: Image): Image =>
   image.resize({ width: 512, height: 512 });
 
-let getExtremesFromArray = (array: Array<number>): Array<number> => {
+export let getExtremesFromArray = (array: number[]): number[] => {
   let min: number = array[0];
   let max: number = array[0];
 
@@ -41,3 +41,7 @@ export let clamp = (num: number, limit: number): number => {
 
 export const degreeToRadian = (degrees: number): number =>
   degrees * (Math.PI / 180);
+
+export const getLookUpTable = (data: number[]): Object[] => data.map(
+  (value: number, idx: number) => new Object({ idx: idx, value: value })
+)

@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-    "extract-config": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/transformacoes-geometricas.ts"
+    "runFile": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/histograma.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
