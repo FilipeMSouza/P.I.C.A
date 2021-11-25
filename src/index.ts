@@ -1,5 +1,4 @@
 import express, { NextFunction } from "express";
-import { nextTick } from "process";
 
 import {
   multiplyTwoImages,

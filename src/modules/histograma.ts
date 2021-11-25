@@ -1,4 +1,5 @@
-import { Image } from "image-js";
+import { writeFile } from "fs";
+import { DataArray, Image } from "image-js";
 import { readImageAsBase64, resizeImg, getLookUpTable } from "./utils";
 
 enum ImageKind {
@@ -10,6 +11,17 @@ enum ImageKind {
   CMYK = "CMYK",
   CMYKA = "CMYKA",
 }
+
+const histogramaFromImage = (imageObject: Image): Object[] => {
+  let histograma: number[] = Array(256).fill(0);
+  let imageData = imageObject.data;
+
+  for (let i in imageData) {
+    histograma[imageData[i]]++;
+  }
+
+  return getLookUpTable(histograma);
+};
 
 export const histograma = async (
   imageBase64: string,
@@ -46,7 +58,10 @@ export const histogramaNormalizado = async (
     : getLookUpTable(histogramaNormalizado);
 };
 
-export const histogramaEqualizado = async (imageBase64: string, toImage:boolean=false): Promise<number[] | any> => {
+export const histogramaEqualizado = async (
+  imageBase64: string,
+  toImage: boolean = false
+): Promise<number[] | any> => {
   let oImage: Image = resizeImg(await Image.load(imageBase64)).grey();
   let histNormalizado: Array<number> = (await histogramaNormalizado(
     imageBase64
@@ -73,10 +88,10 @@ export const histogramaEqualizado = async (imageBase64: string, toImage:boolean=
       .map((x: any) => [x.idx, x.value])
   );
 
-  return toImage ? lookUpTableObjects: getLookUpTable(valsTable);
+  return toImage ? lookUpTableObjects : getLookUpTable(valsTable);
 };
 
-export const equalizarImagem = async (imageBase64: string  ) => {
+export const equalizarImagem = async (imageBase64: string) => {
   let oImage: Image = resizeImg(await Image.load(imageBase64)).grey();
   let newImage: Image = new Image({
     width: oImage.width,
@@ -94,3 +109,36 @@ export const equalizarImagem = async (imageBase64: string  ) => {
   return newImage.toDataURL();
 };
 
+export const contrastStretching = async (imageBase64: string) => {
+  let oImage: Image = resizeImg(await Image.load(imageBase64)).grey();
+  let oImageData: DataArray = oImage.data;
+
+  let newImage: Image = new Image({
+    width: oImage.width,
+    height: oImage.height,
+    kind: ImageKind.GREY,
+  });
+
+  let minPixelVal: number = oImageData[0];
+  let maxPixelVal: number = oImageData[0];
+
+  for (let i in oImage.data) {
+    minPixelVal = Math.min(oImage.data[i], minPixelVal);
+    maxPixelVal = Math.max(oImage.data[i], maxPixelVal);
+  }
+
+  const calcularContraste = (valorPixel: number) =>
+    ((valorPixel - minPixelVal) / (maxPixelVal - minPixelVal)) * 255;
+
+  for (let i = 0; i <= newImage.height; i++) {
+    for (let j = 0; j <= newImage.width; j++) {
+      newImage.setPixelXY(i, j, [
+        calcularContraste(oImage.getPixelXY(i, j)[0]),
+      ]);
+    }
+  }
+  return {
+    histData: histogramaFromImage(newImage),
+    imgData: newImage.toDataURL(),
+  };
+};
