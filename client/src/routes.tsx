@@ -13,6 +13,7 @@ import Reflexao from './pages/reflexao';
 import Rotacao from './pages/rotacao';
 import Subtracao from './pages/subtracao';
 import Translacao from './pages/translacao';
+import Histograma from './pages/histograma'
 
 export default function MainRoutes() {
     return (
@@ -28,6 +29,7 @@ export default function MainRoutes() {
            <Route path="/rotacao" element ={<Rotacao/>} />
            <Route path="/escala" element ={<Escala/>} />
            <Route path="/reflexao" element ={<Reflexao/>} />
+           <Route path="/histograma" element ={<Histograma/>} />
            <Route path="*" element ={<h1>Not Found</h1>}/>
        </Routes>
        

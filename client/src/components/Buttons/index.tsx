@@ -1,6 +1,5 @@
 import { Container } from "./styles";
 import { useNavigate } from 'react-router-dom';
-import Dropdown from 'react-bootstrap/Dropdown';
 
 
 export function Buttons() {
@@ -31,19 +30,21 @@ export function Buttons() {
     const redirectRef = () => {
         navigate('/reflexao')
     }
+    const redirectHisto = () => {
+        navigate('/histograma')
+    }
     return (
        
         <Container>
             <button onClick={redirectAd}> Adiçao </button>
             <button onClick={redirectSub}> Subtração </button>
             <button onClick={redirectMult}> Multiplicação  </button>
-
+            <button onClick={redirectDiv}> Divisão  </button>
             <button onClick={redirectTrans}> Translação </button>
             <button onClick={redirectRot}> Rotação </button>
             <button onClick={redirectEsc}> Escala </button>
             <button onClick={redirectRef}> Reflexão </button>
-
-            <button> Histogramas </button>
+            <button onClick={redirectHisto}> Histogramas </button>
 
         </Container>
 

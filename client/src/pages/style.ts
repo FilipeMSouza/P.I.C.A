@@ -16,13 +16,14 @@ export const AuxContainer = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap:wrap;
+    justify-content: start;
     margin-top:2rem;
+    width: 50%;
 `;
 
 
 export const Content = styled.div`
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
     img{
         margin-left: .75rem;
@@ -135,3 +136,6 @@ export const AuxContainer2 = styled.div`
     width: 50%;
     
 `;
+
+
+export const GraphResult = styled.div``;
