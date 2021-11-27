@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { api } from '../Services/api';
 
-import RepositoryImage from './repository_image';
+import RepositoryImage from './components/repository_image';
 
 import Lena from "../assets/placeholders/lena.jpeg";
 import Amongus from "../assets/placeholders/amongus.jpeg";
@@ -20,21 +20,59 @@ import {
     GraphResult
 } from "./style";
 
+import { AgChartsReact } from 'ag-charts-react';
+import * as agCharts from 'ag-charts-community';
+
 export default function Histograma() {
     const [param1, setParam1] = useState('')
     const [tipo, setTipo] = useState('')
-    const [result, setResult] = useState('')
+    const [idx, setIdx] = useState('')
+    const [value, setValue] = useState('')
+    const [result, setResult] = useState()   
 
-    let arrayRestul = ['']
+
 
     const histogram = async () => {
         const { data } = await api.get('histograma/' + tipo + '&' + param1)
         setResult(data.data)
-        for(let i = 0; i < result.length; i++) {
-            arrayRestul[i] = result[i]
-        }
-        
     }
+
+    var options = {
+        container: document.getElementById('myChart'),
+        title: {
+          text: 'Histograma da imagem'
+        },
+        subtitle: {
+          text: 'Número de pixels por nível de cinza'
+        },
+        data: result,
+        series: [
+          {
+            type: 'histogram',
+            xKey: 'idx',
+            xName: 'Nível de cinza',
+            yKey: 'value',
+            yName: 'Número de pixels',
+            binCount: 256,
+          },
+        ],
+        legend: {
+          enabled: false,
+        },
+        axes: [
+          {
+            type: 'number',
+            position: 'bottom',
+            title: { text: 'Níveis de cinza'}
+          },
+          {
+            type:'number',
+            position: 'left',
+            title: {text: 'Número de pixels'}
+          },
+        ],
+        height: 550,
+      };
 
     const btn = [
         { name: "Lena", where: Lena, },
@@ -85,8 +123,8 @@ export default function Histograma() {
                     <button onClick={() => { callHistograma(1) }}> Normalizado </button>
                     <button onClick={() => { callHistograma(2) }}> Equalizado </button>
                 </Operation>
-                <GraphResult>
-                   
+                <GraphResult id = "myChart">
+                    <AgChartsReact options={options}/>
                 </GraphResult>
             </AuxContainer2>
         </Container>

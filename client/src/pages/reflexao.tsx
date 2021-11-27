@@ -3,7 +3,7 @@ import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2
 import {useEffect, useState} from 'react';
 import { api } from '../Services/api';
 
-import RepositoryImage from './repository_image';
+import RepositoryImage from './components/repository_image';
 import Lena from "../assets/placeholders/lena.jpeg";
 import Amongus from "../assets/placeholders/amongus.jpeg";
 import Doggo from "../assets/placeholders/doggo.jpeg";

@@ -1,4 +1,4 @@
-import { Content } from "./style"
+import { Content } from "../style"
 
 interface RepositoryImageProps{
     imgData:{

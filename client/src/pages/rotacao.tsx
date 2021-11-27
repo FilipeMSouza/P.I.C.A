@@ -4,7 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { api } from '../Services/api';
 
-import RepositoryImage from './repository_image';
+import RepositoryImage from './components/repository_image';
 import Lena from "../assets/placeholders/lena.jpeg";
 import Amongus from "../assets/placeholders/amongus.jpeg";
 import Doggo from "../assets/placeholders/doggo.jpeg";

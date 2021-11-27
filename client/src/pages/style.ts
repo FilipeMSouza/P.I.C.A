@@ -138,4 +138,7 @@ export const AuxContainer2 = styled.div`
 `;
 
 
-export const GraphResult = styled.div``;
+export const GraphResult = styled.div`
+    width: 100%;
+    height: 80%;
+`;
