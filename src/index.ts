@@ -106,11 +106,14 @@ app.get("/histograma/:tipo&:imagePath", async (req: any, res) => {
   let data;
 
   switch (tipo) {
-    case "normalizado":
+    case "Normalizado":
       data = await histogramaNormalizado(imagePath, true);
       break;
-    case "equalizado":
+    case "Equalizado":
       data = await histogramaEqualizado(imagePath);
+      break;
+      case "ContrastStretching":
+      data = await contrastStretching(imagePath);
       break;
     default:
       data = await histograma(imagePath, true);

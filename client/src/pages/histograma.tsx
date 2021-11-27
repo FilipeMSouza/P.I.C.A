@@ -94,8 +94,10 @@ export default function Histograma() {
     }
 
     const tipoHistograma = [
-        'normalizado',
-        'equalizado'
+        'ContrastStretching',
+        'Equalizado',
+        'Normalizado',
+        'Normal'
     ]
 
     useEffect(() => {
@@ -120,8 +122,11 @@ export default function Histograma() {
             </AuxContainer>
             <AuxContainer2>
                 <Operation>
-                    <button onClick={() => { callHistograma(1) }}> Normalizado </button>
-                    <button onClick={() => { callHistograma(2) }}> Equalizado </button>
+                    {
+                        [1, 2, 3, 4].map(number =>
+                            <button key={number} onClick={() => callHistograma(number)}>{tipoHistograma[number - 1]}</button>
+                        )
+                    }
                 </Operation>
                 <GraphResult id = "myChart">
                     <AgChartsReact options={options}/>
