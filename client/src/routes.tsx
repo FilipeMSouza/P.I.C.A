@@ -13,7 +13,10 @@ import Reflexao from './pages/reflexao';
 import Rotacao from './pages/rotacao';
 import Subtracao from './pages/subtracao';
 import Translacao from './pages/translacao';
-import Histograma from './pages/histograma'
+import Histograma from './pages/histograma';
+import Contrast from './pages/contrast_stretching';
+import Equalized from './pages/imagem_equalizada'
+
 
 export default function MainRoutes() {
     return (
@@ -30,6 +33,8 @@ export default function MainRoutes() {
            <Route path="/escala" element ={<Escala/>} />
            <Route path="/reflexao" element ={<Reflexao/>} />
            <Route path="/histograma" element ={<Histograma/>} />
+           <Route path="/contraste" element ={<Contrast/>} />
+           <Route path="/equalized" element ={<Equalized/>} />
            <Route path="*" element ={<h1>Not Found</h1>}/>
        </Routes>
        

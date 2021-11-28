@@ -17,17 +17,15 @@ import {
     ButtonContent,
     Operation,
     AuxContainer2,
-    GraphResult
+    GraphResult,
+    Result
 } from "./style";
 
 import { AgChartsReact } from 'ag-charts-react';
-import * as agCharts from 'ag-charts-community';
 
 export default function Histograma() {
     const [param1, setParam1] = useState('')
     const [tipo, setTipo] = useState('')
-    const [idx, setIdx] = useState('')
-    const [value, setValue] = useState('')
     const [result, setResult] = useState()   
 
 
@@ -94,7 +92,6 @@ export default function Histograma() {
     }
 
     const tipoHistograma = [
-        'ContrastStretching',
         'Equalizado',
         'Normalizado',
         'Normal'
@@ -103,6 +100,7 @@ export default function Histograma() {
     useEffect(() => {
         param1.length !== 0 && tipo.length !== 0 && histogram()
     }, [param1, tipo])
+   
 
     return (
         <Container>
@@ -123,7 +121,7 @@ export default function Histograma() {
             <AuxContainer2>
                 <Operation>
                     {
-                        [1, 2, 3, 4].map(number =>
+                        [1, 2, 3].map(number =>
                             <button key={number} onClick={() => callHistograma(number)}>{tipoHistograma[number - 1]}</button>
                         )
                     }

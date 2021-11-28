@@ -112,9 +112,6 @@ app.get("/histograma/:tipo&:imagePath", async (req: any, res) => {
     case "Equalizado":
       data = await histogramaEqualizado(imagePath);
       break;
-      case "ContrastStretching":
-      data = await contrastStretching(imagePath);
-      break;
     default:
       data = await histograma(imagePath, true);
   }
