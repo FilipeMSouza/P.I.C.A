@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/FilipeMSouza/P.I.C.A.git",
-  "author": "matheuszinn <theustloz@gmail.com>",
+  "author": "FilipeMSouza ",
+  "contributors": [
+
+  ],
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",
@@ -14,7 +17,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-    "runFile": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/histograma.ts"
+    "runFile": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/filtro-smoothing.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",

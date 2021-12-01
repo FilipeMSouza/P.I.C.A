@@ -1,6 +1,5 @@
 import { PathLike, promises as fs } from "fs";
 import { Image } from "image-js";
-import { number } from "mathjs";
 
 export let readImageAsBase64 = async (path: string): Promise<string> => {
   return `data:${"image/" + path.split(".").at(-1)};base64,${await fs
@@ -42,6 +41,29 @@ export let clamp = (num: number, limit: number): number => {
 export const degreeToRadian = (degrees: number): number =>
   degrees * (Math.PI / 180);
 
-export const getLookUpTable = (data: number[]): Object[] => data.map(
-  (value: number, idx: number) => new Object({ idx: idx, value: value })
-)
+export const getLookUpTable = (data: number[]): Object[] =>
+  data.map(
+    (value: number, idx: number) => new Object({ idx: idx, value: value })
+  );
+
+const chunk = <T>(array: T[], chunkSize: number): T[][] => {
+  const R = [];
+  for (let i = 0, len = array.length; i < len; i += chunkSize)
+    R.push(array.slice(i, i + chunkSize));
+  return R;
+};
+
+
+export const getMatrixFromImage = (image: Image): number[][] => {
+  let array = new Array(image.size);
+  let ptr = 0;
+  for (let i = 0; i < image.data.length; i += image.channels) {
+    let pixel;
+    for (let j = 0; j < image.components; j++) {
+      pixel = image.data[i + j];
+    }
+    array[ptr++] = pixel;
+  }
+
+  return chunk(array, image.height);
+}
