@@ -19,8 +19,14 @@ import {
   histogramaEqualizado,
   histogramaNormalizado,
   equalizarImagem,
-  contrastStretching
+  contrastStretching,
 } from "../src/modules/histograma";
+
+import {
+  aplicarFiltroSmoothing,
+  TipoBorda,
+} from "../src/modules/filtro-smoothing";
+import Mascara from "./modules/Mascara";
 
 const PORT: number = 8048;
 const app = express();
@@ -115,23 +121,35 @@ app.get("/histograma/:tipo&:imagePath", async (req: any, res) => {
     default:
       data = await histograma(imagePath, true);
   }
-  return res.status(200).json({data: data})
+  return res.status(200).json({ data: data });
 });
 
 app.get("/imagemEqualizada/:imagePath", async (req: any, res) => {
-  let imagePath: string = req.params['imagePath']
+  let imagePath: string = req.params["imagePath"];
 
   const result = await equalizarImagem(imagePath);
-  return res.status(200).json({data: result})
+  return res.status(200).json({ data: result });
+});
 
-})
+app.get("/contrastStretching/:imagePath", async (req: any, res) => {
+  let imagePath: string = req.params["imagePath"];
 
-app.get("/contrastStretching/:imagePath", async (req: any, res ) => {
-  let imagePath: string = req.params['imagePath']
+  const result = await contrastStretching(imagePath);
+  return res.status(200).json({ data: result });
+});
 
-  const result  = await contrastStretching(imagePath);
-  return res.status(200).json({data: result}) 
-})
+app.get("/smoothing/:imagePath&:mascara&:tipoBorda", async (req: any, res) => {
+  let imagePath: string = req.params["imagePath"];
+  let tipoBorda: TipoBorda = parseInt(req.params["tipoBorda"])
+
+  let mascara = new Mascara(
+    eval(req.params["mascara"]) as number[][],
+    tipoBorda
+  );
+
+  const result = await aplicarFiltroSmoothing(imagePath, mascara);
+  return res.status(200).json({ data: result });
+});
 
 app.listen(PORT, () => {
   console.log(`ඞ Server iniciado!!!ඞ`);

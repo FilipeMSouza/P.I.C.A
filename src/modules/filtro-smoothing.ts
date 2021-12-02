@@ -247,3 +247,5 @@ export const aplicarFiltroSmoothing = async (
 
   return newImage.toDataURL();
 };
+
+console.log(1 as TipoBorda)
