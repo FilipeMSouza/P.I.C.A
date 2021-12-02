@@ -1,6 +1,6 @@
 import { Image } from "image-js";
 import Mascara from "./Mascara";
-import { readImageAsBase64, resizeImg, getMatrixFromImage } from "./utils";
+import {resizeImg, getMatrixFromImage } from "./utils";
 
 enum ImageKind {
   BINARY = "BINARY",
@@ -12,89 +12,79 @@ enum ImageKind {
   CMYKA = "CMYKA",
 }
 
-enum TipoBorda {
+export enum TipoBorda {
   PaddingComZeros,
   ConvolucaoPeriodica,
   ReplicacaoDosPixelsDasBordas,
   ZeroAosResultadosNaoCalculaveis,
 }
 
-export interface SmoothingOptions {
-  tamanhoVizinhanca: 5 | 3;
-  mascara: Mascara;
-  solucaoBorda: TipoBorda;
-}
+const bordaPaddingComZeros = (
+  imageRef: Image,
+  mascara: Mascara,
+  oImageMatrix: number[][]
+) => {
+  const [start, end] = mascara.tamVizinhanca === 3 ? [-1, 1] : [-2, 2];
 
-// TODO: Mudar Mascara para uma classe!!!!
-
-/* 
-    Implementar filtro com efeito de smoothing na imagem.
-
-    #### Coisas a serem feitas :
-    - [✅] Utilizar filtro da média
-    - [ ] Utilizar 2 tamanhos distintos de vizinhança
-    - [✅] Utilizar 2 variações de máscaras
-    - [✅] Utilizar soluções de borda do tipo:
-        - [✅] Replicação dos pixels das bordas
-        - [✅] Atribuindo zero aos resultados não calculáveis
-        - [✅] Padding com zeros
-        - [✅] Convolução periódica 
-
-
-    
-*/
-
-const SIMPLE_MASK: Mascara = new Mascara([1, 1, 1, 1, 1, 1, 1, 1, 1]);
-const bordaPaddingComZeros = (imageRef: Image, options: SmoothingOptions, oImageMatrix: number[][]) => {
   for (let x = 0; x < imageRef.width; x++) {
     for (let y = 0; y < imageRef.height; y++) {
       let pixelList: any[] = [];
 
-      for (let i = -1; i <= 1; i++) {
-        for (let j = -1; j <= 1; j++) {
+      for (let i = start; i <= end; i++) {
+        for (let j = start; j <= end; j++) {
           try {
             let result = oImageMatrix[x + i][y + j];
+
+            if (result === undefined) {
+              throw TypeError;
+            }
+
             pixelList.push(result);
           } catch (error) {
             if ((error as Error).name === "TypeError") {
-              pixelList.push(0)
-              continue
+              pixelList.push(0);
+              continue;
             }
           }
         }
       }
-      pixelList = pixelList.includes(undefined) ? pixelList.map((values: number) => values === undefined ? 0 : values) : pixelList
+
+      pixelList = pixelList.includes(undefined)
+        ? pixelList.map((values: number) => (values === undefined ? 0 : values))
+        : pixelList;
 
       let newPixelValue = pixelList.reduce(
-        (result, pl, idx) => result + pl * options.mascara.values[idx],
+        (result, pl, idx) => result + pl * mascara.values[idx],
         0
       );
-      imageRef.setPixelXY(y, x, [
-        Math.round(newPixelValue / options.mascara.div),
-      ]);
+      imageRef.setPixelXY(y, x, [Math.round(newPixelValue / mascara.div)]);
     }
   }
-}
+};
 
-const bordaReplicacaoDosPixelsDasBordas = (imageRef: Image, oImageRef: Image, options: SmoothingOptions, oImageMatrix: number[][]) => {
+const bordaReplicacaoDosPixelsDasBordas = (
+  imageRef: Image,
+  oImageRef: Image,
+  mascara: Mascara,
+  oImageMatrix: number[][]
+) => {
+  const [start, end] = mascara.tamVizinhanca === 3 ? [-1, 1] : [-2, 2];
+
   for (let x = 0; x < imageRef.height; x++) {
     for (let y = 0; y < imageRef.width; y++) {
       let pixelList: any[] = [];
-      try {
-        pixelList = [
-          oImageMatrix[x - 1][y - 1],
-          oImageMatrix[x - 1][y],
-          oImageMatrix[x - 1][y + 1],
-          oImageMatrix[x][y - 1],
-          oImageMatrix[x][y],
-          oImageMatrix[x][y + 1],
-          oImageMatrix[x + 1][y - 1],
-          oImageMatrix[x + 1][y],
-          oImageMatrix[x + 1][y + 1],
-        ];
 
-        if (pixelList.includes(undefined)) {
-          throw TypeError;
+      try {
+        for (let i = start; i <= end; i++) {
+          for (let j = start; j <= end; j++) {
+            let result = oImageMatrix[x + i][y + j];
+
+            if (result === undefined) {
+              throw TypeError;
+            }
+
+            pixelList.push(result);
+          }
         }
       } catch (error) {
         if ((error as Error).name === "TypeError") {
@@ -103,35 +93,36 @@ const bordaReplicacaoDosPixelsDasBordas = (imageRef: Image, oImageRef: Image, op
         }
       }
       let newPixelValue = pixelList.reduce(
-        (result, pl, idx) => result + pl * options.mascara.values[idx],
+        (result, pl, idx) => result + pl * mascara.values[idx],
         0
       );
-      imageRef.setPixelXY(y, x, [
-        Math.round(newPixelValue / options!.mascara.div),
-      ]);
+      imageRef.setPixelXY(y, x, [Math.round(newPixelValue / mascara.div)]);
     }
   }
-}
+};
 
-const bordaZeroAosResultadosNaoCalculaveis = (imageRef: Image, options: SmoothingOptions, oImageMatrix: number[][]) => {
+const bordaZeroAosResultadosNaoCalculaveis = (
+  imageRef: Image,
+  mascara: Mascara,
+  oImageMatrix: number[][]
+) => {
+  const [start, end] = mascara.tamVizinhanca === 3 ? [-1, 1] : [-2, 2];
+
   for (let x = 0; x < imageRef.width; x++) {
     for (let y = 0; y < imageRef.height; y++) {
       let pixelList: Array<any> = [];
-      try {
-        pixelList = [
-          oImageMatrix[x - 1][y - 1],
-          oImageMatrix[x - 1][y],
-          oImageMatrix[x - 1][y + 1],
-          oImageMatrix[x][y - 1],
-          oImageMatrix[x][y],
-          oImageMatrix[x][y + 1],
-          oImageMatrix[x + 1][y - 1],
-          oImageMatrix[x + 1][y],
-          oImageMatrix[x + 1][y + 1],
-        ];
 
-        if (pixelList.includes(undefined)) {
-          throw TypeError;
+      try {
+        for (let i = start; i <= end; i++) {
+          for (let j = start; j <= end; j++) {
+            let result = oImageMatrix[x + i][y + j];
+
+            if (result === undefined) {
+              throw TypeError;
+            }
+
+            pixelList.push(result);
+          }
         }
       } catch (error) {
         if ((error as Error).name === "TypeError") {
@@ -139,72 +130,91 @@ const bordaZeroAosResultadosNaoCalculaveis = (imageRef: Image, options: Smoothin
           continue;
         }
       }
+
       let newPixelValue = pixelList.reduce(
-        (result, pl, idx) => result + pl * options!.mascara.values[idx],
+        (result, pl, idx) => result + pl * mascara.values[idx],
         0
       );
-      imageRef.setPixelXY(y, x, [
-        Math.round(newPixelValue / options!.mascara.div),
-      ]);
+
+      imageRef.setPixelXY(y, x, [Math.round(newPixelValue / mascara.div)]);
     }
   }
-}
+};
 
-const bordaConvolucaoPeriodica = (imageRef: Image, options: SmoothingOptions, oImageMatrix: number[][]) => {
+const bordaConvolucaoPeriodica = (
+  imageRef: Image,
+  mascara: Mascara,
+  oImageMatrix: number[][]
+) => {
+  const [start, end] = mascara.tamVizinhanca === 3 ? [-1, 1] : [-2, 2];
+
   for (let x = 0; x < imageRef.width; x++) {
     for (let y = 0; y < imageRef.height; y++) {
-
       let pixelList = [];
 
-      for (let i = -1; i <= 1; i++) {
-        for (let j = -1; j <= 1; j++) {
+      for (let i = start; i <= end; i++) {
+        for (let j = start; j <= end; j++) {
           try {
             let result = oImageMatrix[x + i][y + j];
 
             if (result === undefined) {
-
               //checa diagonal
               if (i < 0 && j < 0) {
-                pixelList.push(oImageMatrix[oImageMatrix.length + i][oImageMatrix.length + j]);
+                pixelList.push(
+                  oImageMatrix[oImageMatrix.length + i][oImageMatrix.length + j]
+                );
               } else if (i >= 0) {
-                pixelList.push(oImageMatrix[i][(oImageMatrix.length + j) % oImageMatrix.length]);
+                pixelList.push(
+                  oImageMatrix[i][
+                    (oImageMatrix.length + j) % oImageMatrix.length
+                  ]
+                );
               } else if (j >= 0) {
-                pixelList.push(oImageMatrix[(oImageMatrix.length + i) % oImageMatrix.length][j]);
+                pixelList.push(
+                  oImageMatrix[(oImageMatrix.length + i) % oImageMatrix.length][
+                    j
+                  ]
+                );
               }
             } else {
               pixelList.push(result);
             }
-
           } catch (error) {
             if ((error as Error).name === "TypeError") {
-              if ((i < 0 && j < 0) && i === j) {
-                pixelList.push(oImageMatrix[oImageMatrix.length + i][oImageMatrix.length + j]);
+              if (i < 0 && j < 0) {
+                pixelList.push(
+                  oImageMatrix[oImageMatrix.length + i][oImageMatrix.length + j]
+                );
               } else if (i >= 0) {
-                pixelList.push(oImageMatrix[i][(oImageMatrix.length + j) % oImageMatrix.length]);
-              } else {
-                pixelList.push(oImageMatrix[(oImageMatrix.length + i) % oImageMatrix.length][j]);
+                pixelList.push(
+                  oImageMatrix[i][
+                    (oImageMatrix.length + j) % oImageMatrix.length
+                  ]
+                );
+              } else if (j >= 0) {
+                pixelList.push(
+                  oImageMatrix[(oImageMatrix.length + i) % oImageMatrix.length][
+                    j
+                  ]
+                );
               }
-              continue
             }
+            continue;
           }
         }
       }
-
       let newPixelValue = pixelList.reduce(
-        (result, pl, idx) => result + pl * options!.mascara.values[idx],
+        (result, pl, idx) => result + pl * mascara.values[idx],
         0
       );
-      imageRef.setPixelXY(y, x, [
-        Math.round(newPixelValue / options!.mascara.div),
-      ]);
-
+      imageRef.setPixelXY(y, x, [Math.round(newPixelValue / mascara.div)]);
     }
   }
-}
+};
 
 export const aplicarFiltroSmoothing = async (
   imageBase64: string,
-  options: SmoothingOptions
+  mascara: Mascara
 ) => {
   let oImage: Image = resizeImg(await Image.load(imageBase64)).grey();
 
@@ -216,29 +226,24 @@ export const aplicarFiltroSmoothing = async (
 
   let oImageMatrix: number[][] = getMatrixFromImage(oImage);
 
-  if (options!.tamanhoVizinhanca === 3) {
-    switch (options!.solucaoBorda) {
-      case TipoBorda.PaddingComZeros:
-        bordaPaddingComZeros(newImage, options, oImageMatrix)
-        break;
-      case TipoBorda.ReplicacaoDosPixelsDasBordas:
-        bordaReplicacaoDosPixelsDasBordas(newImage, oImage, options, oImageMatrix)
-        break;
-      case TipoBorda.ZeroAosResultadosNaoCalculaveis:
-        bordaZeroAosResultadosNaoCalculaveis(newImage, options, oImageMatrix);
-        break
-      default:
-        bordaConvolucaoPeriodica(newImage, options, oImageMatrix);
-    }
+  switch (mascara.solucaoBorda) {
+    case TipoBorda.PaddingComZeros:
+      bordaPaddingComZeros(newImage, mascara, oImageMatrix);
+      break;
+    case TipoBorda.ReplicacaoDosPixelsDasBordas:
+      bordaReplicacaoDosPixelsDasBordas(
+        newImage,
+        oImage,
+        mascara,
+        oImageMatrix
+      );
+      break;
+    case TipoBorda.ZeroAosResultadosNaoCalculaveis:
+      bordaZeroAosResultadosNaoCalculaveis(newImage, mascara, oImageMatrix);
+      break;
+    default:
+      bordaConvolucaoPeriodica(newImage, mascara, oImageMatrix);
   }
 
   return newImage.toDataURL();
 };
-
-readImageAsBase64("client/src/assets/placeholders/lena.jpeg").then((path) =>
-  aplicarFiltroSmoothing(path, {
-    mascara: SIMPLE_MASK,
-    solucaoBorda: TipoBorda.ConvolucaoPeriodica,
-    tamanhoVizinhanca: 3,
-  }).then(b => Image.load(b).then(i => i.save('AAAA.png')))
-);
