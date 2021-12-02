@@ -17,7 +17,7 @@
   },
   "scripts": {
     "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
-    "runFile": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/filtro-smoothing.ts"
+    "runFile": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\" src/modules/filtragem-espacial-laplaciana.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
