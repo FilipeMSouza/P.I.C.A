@@ -10,7 +10,7 @@ export const Container = styled.div`
         position: relative;
         padding: 1.5rem 2rem;
         border-radius: 0.25rem;
-        box-shadow: .2rem .4rem .8rem var(--dark-grey);
+        box-shadow: .2rem .4rem .8rem var( --preto);
     }
     
 `

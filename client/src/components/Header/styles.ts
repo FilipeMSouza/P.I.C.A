@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-    background: var(--dark-grey);
+    background: var(--roxo);
     height: 14.5rem ;
 
 `
