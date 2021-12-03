@@ -121,7 +121,10 @@ const laplaciano = async (
     return newImage.toDataURL();
 };
 
-const unsharp_mask = async (imageBase64: string) => {
+const unsharp_mask_highboost = async (
+    imageBase64: string,
+    k_value: number = 1
+) => {
     let oImage: Image = resizeImg(await Image.load(imageBase64)).grey();
     let newImage: Image = new Image({
         width: oImage.width,
@@ -132,7 +135,9 @@ const unsharp_mask = async (imageBase64: string) => {
     const oImageMatrix: number[][] = getMatrixFromImage(oImage);
     const FILTRO_GAUSS_BLUR = [1, 2, 1, 2, 4, 2, 1, 2, 1];
 
-    let FILTRO_UNSHARP_MASK = [0, -1, 0, -1, 5, -1, 0, -1, 0];
+    let FILTRO_UNSHARP_MASK = [0, -1, 0, -1, 4 + k_value, -1, 0, -1, 0];
+
+    k_value > 1 ?? console.log('APLICANDO HIGH BOOST!!!!!!')
 
     for (let x = 0; x < newImage.height; x++) {
         for (let y = 0; y < newImage.width; y++) {
@@ -163,7 +168,7 @@ const unsharp_mask = async (imageBase64: string) => {
                     0
                 );
 
-                newImage.setPixelXY(y, x, [clamp(newPixelValue)]);
+                newImage.setPixelXY(y, x, [clamp(Math.round(newPixelValue))]);
             } else {
                 newImage.setPixelXY(y, x, [oImageMatrix[x][y]]);
             }
@@ -174,5 +179,7 @@ const unsharp_mask = async (imageBase64: string) => {
 };
 
 readImageAsBase64("client/src/assets/placeholders/lena.jpeg").then(path =>
-    unsharp_mask(path).then(b => Image.load(b).then(i => i.save("a.png")))
+    unsharp_mask_highboost(path,1.5).then(b =>
+        Image.load(b).then(i => i.save("unsharp.png"))
+    )
 );
