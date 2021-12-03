@@ -58,12 +58,13 @@ export const ButtonContent = styled.div`
         margin-bottom: 3rem;
         margin-left: 0.75rem;
         height: 3rem;
-        background: var(--Dark-brown);
+        background: var(--roxo);
+        color: var(--white);
+        box-shadow: .2rem .4rem .6rem var(--azul);
         padding: 0.5rem 0.5rem;
         border-radius: 0.25rem;
-        color: var(--light-brown);
-        border-color: var(--Dark-brown);
-        box-shadow: none;
+        
+        
     }
 `;
 
@@ -95,12 +96,11 @@ export const Operation = styled.div`
         margin-bottom:2rem;
         margin-left: 0.75rem;
         height: 3rem;
-        background: var(--Dark-brown);
+        background: var(--roxo);
+        color: var(--white);
+        box-shadow: .2rem .4rem .6rem var(--azul);
         padding: 0.5rem 0.5rem;
         border-radius: 0.25rem;
-        color: var(--light-brown);
-        border-color: var(--Dark-brown);
-        box-shadow: none;
         &.translacao{
             margin-top:1.495rem;
         }

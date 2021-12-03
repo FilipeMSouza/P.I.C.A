@@ -2,19 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(11,1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(3,1fr);
     margin-top: -2.7rem;
-    margin-left:0.5rem;
-    margin-right:0.5rem;
+    justify-items: center;
 
-    button{ 
-        background: var(--Dark-brown);
-        padding: 1rem 1rem;
+    button{
+        position: relative;
+        padding: 1.5rem 2rem;
         border-radius: 0.25rem;
-        color: var(--light-brown);
-        border-color: var(--Dark-brown);
-        box-shadow: none;
-    
+        box-shadow: .2rem .4rem .8rem var( --preto);
     }
+    
 `
