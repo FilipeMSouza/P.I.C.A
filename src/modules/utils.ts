@@ -1,6 +1,17 @@
 import { PathLike, promises as fs } from "fs";
 import { Image } from "image-js";
 
+export enum ImageKind {
+  BINARY = "BINARY",
+  GREY = "GREY",
+  GREYA = "GREYA",
+  RGB = "RGB",
+  RGBA = "RGBA",
+  CMYK = "CMYK",
+  CMYKA = "CMYKA",
+}
+
+
 export let readImageAsBase64 = async (path: string): Promise<string> => {
   return `data:${"image/" + path.split(".").at(-1)};base64,${await fs
     .readFile(path as PathLike, "base64")
