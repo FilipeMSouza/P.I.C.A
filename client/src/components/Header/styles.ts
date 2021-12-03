@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.header`
-    background: var(--orange);
-    height: 10.5rem ;
+    background: var(--dark-grey);
+    height: 14.5rem ;
 
 `
 
@@ -14,6 +14,10 @@ export const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    img{ 
+        margin-top: 2rem;
+        margin-left: -5rem;
+    }
     
 
 `;

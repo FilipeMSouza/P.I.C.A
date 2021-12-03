@@ -8,9 +8,9 @@ export const Container = styled.div`
 
     button{
         position: relative;
-        padding: 2rem 3rem;
+        padding: 1.5rem 2rem;
         border-radius: 0.25rem;
-        box-shadow: none;
+        box-shadow: .2rem .4rem .8rem var(--dark-grey);
     }
     
 `
