@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { api } from '../Services/api';
+import { api } from '../../Services/api';
 
-import RepositoryImage from './components/repository_image';
+import RepositoryImage from '../components/repository_image';
 
-import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpeg";
-import Doggo from "../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+import Lena from "../../assets/placeholders/lena.jpeg";
+import Amongus from "../../assets/placeholders/amongus.jpeg";
+import Doggo from "../../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
 
 
 import {
@@ -19,7 +19,7 @@ import {
     AuxContainer2,
     GraphResult,
     Result
-} from "./style";
+} from "../style";
 
 import { AgChartsReact } from 'ag-charts-react';
 

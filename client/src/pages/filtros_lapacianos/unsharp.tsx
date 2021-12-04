@@ -1,13 +1,13 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "../style"
 
 import { useEffect, useState} from 'react';
-import { api } from '../Services/api';
+import { api } from '../../Services/api';
 
-import RepositoryImage from './components/repository_image';
-import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpeg";
-import Doggo from "../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+import RepositoryImage from '../components/repository_image';
+import Lena from "../../assets/placeholders/lena.jpeg";
+import Amongus from "../../assets/placeholders/amongus.jpeg";
+import Doggo from "../../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
 interface repository {
     name: string,
     where: string,
@@ -17,15 +17,14 @@ interface repository {
 export default function Translacao(this: any) {
 
     const [param1, setParam1] = useState('')
-    const [paramX, setParamX] = useState('')
+    const [filter, setFilter] = useState('')
     const [paramY, setParamY] = useState('')
 
     const [result, setResult] = useState('')
 
     const translacImage = async () => {
-        var X_Axis = paramX?.toString()
-        var Y_Axis = paramY?.toString()
-        const {data} = await api.get('translacao/' + param1 + '&' + X_Axis + '&' + Y_Axis)
+        var auxFilter = filter?.toString()
+        const {data} = await api.get('unsharp_mask_highboost/' + param1 + '&' + auxFilter)
         setResult(data.data)
     }
 
@@ -41,8 +40,8 @@ export default function Translacao(this: any) {
     }, []);
 
     useEffect(() => {
-        param1.length !== 0 && paramX.length !== 0 && paramY.length !== 0 && translacImage()
-    }, [param1, paramX, paramY]);
+        param1.length !== 0 && filter.length  !== 0 && translacImage()
+    }, [param1, filter]);
 
 
     const urlPaths = [
@@ -50,11 +49,6 @@ export default function Translacao(this: any) {
         'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
         'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
         'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
-    ]
-
-    const input=[
-        {Axis: 'X', value: 0, text :"0"},
-        {Axis: 'Y', value: 0, text :"0"}
     ]
 
     return (
@@ -70,7 +64,7 @@ export default function Translacao(this: any) {
                     </Content>
                     <ButtonContent>
                     {urlPaths.map(img =>
-                        <button onClick={() => setParam1(img)}>Trasnlacionar</button>
+                        <button onClick={() => setParam1(img)}>selecionar</button>
                     )}
                     </ButtonContent>
 
@@ -78,21 +72,10 @@ export default function Translacao(this: any) {
 
                 <AuxContainer2>
                     <Operation>
-                        {input.map(inp =>
-                            <label>
-                                Fator eixo {inp.Axis}:
-                                <input type="number" placeholder={inp.text} onChange={e=> {
-                                    if(inp.Axis === 'X'){
-                                        console.log(paramX)
-                                        setParamX(e.target.value);
-                                    }
-                                else{
-                                    setParamY(e.target.value);
-                                        console.log(paramY)
-                                }}}/>
-                            </label>
-                        )}
-                    
+                        <label>
+                            insira um valor de flitro:
+                            <input type="number" placeholder="0" onChange={e=> {setFilter(e.target.value);}}/>
+                        </label>
                     </Operation>
                     
                     <Result>

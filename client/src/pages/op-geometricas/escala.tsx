@@ -1,11 +1,11 @@
-import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result, Operation, AuxContainer2 } from "../style"
 import { useState, useEffect } from 'react';
-import { api } from '../Services/api';
-import RepositoryImage from './components/repository_image';
-import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpeg";
-import Doggo from "../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+import { api } from '../../Services/api';
+import RepositoryImage from '../components/repository_image';
+import Lena from "../../assets/placeholders/lena.jpeg";
+import Amongus from "../../assets/placeholders/amongus.jpeg";
+import Doggo from "../../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
 interface repository {
     name: string,
     where: string,

@@ -1,13 +1,14 @@
-import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2 } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2 } from "../style"
 
 import {useEffect, useState} from 'react';
-import { api } from '../Services/api';
+import { api } from '../../Services/api';
 
-import RepositoryImage from './components/repository_image';
-import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpeg";
-import Doggo from "../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+import RepositoryImage from '../components/repository_image';
+import Lena from "../../assets/placeholders/lena.jpeg";
+import Amongus from "../../assets/placeholders/amongus.jpeg";
+import Doggo from "../../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
+
 interface repository {
     name: string,
     where: string,
@@ -15,10 +16,11 @@ interface repository {
 }
 
 
-export default function ImagemEqualizada() {
+export default function Sobel() {
 
     const [param, setParam] = useState('')
-    const [result, setResult] = useState('')
+    const [vResult, setVresult] = useState('')
+    const [hResult, setHresult] = useState('')
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
@@ -37,20 +39,22 @@ export default function ImagemEqualizada() {
         'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
     ]
 
-    const equalizeImage = async () => {
-        const {data} = await api.get('imagemEqualizada/' + param)
-        setResult(data.data)
-        console.log(result)
+    const detectorSobel = async () => {
+        const {data} = await api.get('detectorSobel/' +param)
+        setVresult(data.data.imageVertical)
+        setHresult(data.data.imageHorizontal)
+        console.log(vResult)
+        console.log(hResult)
+
     }
 
     useEffect(() => {
-        param.length !== 0 && equalizeImage()
+        param.length !== 0 && detectorSobel()
     }, [param])
 
     return (
       
             <Container>
-                eq
                 <AuxContainer>
                     <Content>
                     {btn.map(img => {
@@ -61,7 +65,7 @@ export default function ImagemEqualizada() {
                     </Content>
                     <ButtonContent>
                         {urlPaths.map(img =>
-                            <button key={img} onClick={() => setParam(img)}>Selecionar</button>
+                            <button key={img} onClick={() => setParam(img)}>Detector Sobel</button>
                         )}
                     </ButtonContent>
 
@@ -69,7 +73,8 @@ export default function ImagemEqualizada() {
 
                 <AuxContainer2>
                     <Result>
-                        <img className="resultado" src={result} alt="Resultado" />
+                    <img className="resultado" src={vResult} alt="Resultado" />
+                    <img className="resultado" src={hResult} alt="Resultado" />
                     </Result>
                 </AuxContainer2>
 

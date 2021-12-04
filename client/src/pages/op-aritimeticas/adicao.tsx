@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { api } from '../Services/api';
+import { api } from '../../Services/api';
 
-import RepositoryImage from './components/repository_image';
+import RepositoryImage from '../components/repository_image';
 
-import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpeg";
-import Doggo from "../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+import Lena from "../../assets/placeholders/lena.jpeg";
+import Amongus from "../../assets/placeholders/amongus.jpeg";
+import Doggo from "../../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
 
 import {
     Container,
@@ -17,16 +17,15 @@ import {
     Result,
     Operation,
     AuxContainer2
-} from "./style"
+} from "../style"
 
-
-export default function Multiplicacao() {
+export default function Adicao() {
     const [param1, setParam1] = useState('')
     const [param2, setParam2] = useState('')
     const [result, setResult] = useState('')
 
-    const MultiplyTwoImages = async () => {
-        const { data } = await api.get('multiply/' + param1 + '&' + param2)
+    const sumTwoImages = async () => {
+        const {data} = await api.get('sum/' + param1 + '&' + param2)
         setResult(data.data)
     }
 
@@ -50,7 +49,7 @@ export default function Multiplicacao() {
     }
 
     useEffect(() => {
-        param1.length !== 0 && param2.length !== 0 && MultiplyTwoImages()
+        param1.length !== 0 && param2.length !== 0 && sumTwoImages()
     }, [param1, param2])
 
     return (
@@ -65,7 +64,7 @@ export default function Multiplicacao() {
                 </Content>
                 <ButtonContent>
                     {urlPaths.map(img =>
-                        <button key={img} onClick={() => setParam1(img)}>Multiplicar por</button>
+                        <button key={img} onClick={() => setParam1(img)}>Somar com</button>
                     )}
                 </ButtonContent>
             </AuxContainer>
@@ -84,5 +83,3 @@ export default function Multiplicacao() {
         </Container>
     );
 }
-
-

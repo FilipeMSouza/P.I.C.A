@@ -147,6 +147,8 @@ app.get("/contrastStretching/:imagePath", async (req: any, res) => {
     return res.status(200).json({ data: result });
 });
 
+//--------------------
+
 app.get("/smoothing/:imagePath&:mascara&:tipoBorda", async (req: any, res) => {
     let imagePath: string = req.params["imagePath"];
     let tipoBorda: TipoBorda = parseInt(req.params["tipoBorda"]);
@@ -159,6 +161,8 @@ app.get("/smoothing/:imagePath&:mascara&:tipoBorda", async (req: any, res) => {
     const result = await aplicarFiltroSmoothing(imagePath, mascara);
     return res.status(200).json({ data: result });
 });
+
+//-------
 
 app.get("/laplaciano/:imagePath&:filtro&:divByNine", async (req: any, res) => {
     let imagePath: string = req.params["imagePath"];

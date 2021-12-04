@@ -13,30 +13,8 @@ export function Buttons() {
 
     let navigate = useNavigate();
 
-    const redirectAd = () => {
-        navigate('/adicao')
-    }
-    const redirectSub = () => {
-        navigate('/subtracao')
-    }
-    const redirectMult = () => {
-        navigate('/multiplicacao')
-    }
-    const redirectDiv = () => {
-        navigate('/divisao')
-    }
-    const redirectTrans = () => {
-        navigate('/translacao')
-    }
-    const redirectRot = () => {
-        navigate('/rotacao')
-    }
-    const redirectEsc = () => {
-        navigate('/escala')
-    }
-    const redirectRef = () => {
-        navigate('/reflexao')
-    }
+    
+   
     const redirectHisto = () => {
         navigate('/histograma')
     }
@@ -57,41 +35,42 @@ export function Buttons() {
                 <Dropdown.Toggle variant="light">Op. Aritiméticas</Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={redirectAd}>Adiçao</Dropdown.Item>
-                    <Dropdown.Item onClick={redirectSub}> Subtração</Dropdown.Item>
-                    <Dropdown.Item onClick={redirectMult}> Multiplicação  </Dropdown.Item>
-                    <Dropdown.Item onClick={redirectDiv}> Divisão  </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/adicao')}>Adiçao</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/subtracao')}> Subtração</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/multiplicacao')}> Multiplicação  </Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/divisao')}}> Divisão  </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
                 <Dropdown.Toggle variant="light">Op. Aritiméticas</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={redirectTrans}>Translação</Dropdown.Item>
-                    <Dropdown.Item onClick={redirectRot}> Rotação</Dropdown.Item>
-                    <Dropdown.Item onClick={redirectEsc}> Escala  </Dropdown.Item>
-                    <Dropdown.Item onClick={redirectRef}> Reflexão  </Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/translacao')}}>Translação</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/rotacao')}}> Rotação</Dropdown.Item>
+                    <Dropdown.Item onClick={() => { navigate('/escala')}}> Escala  </Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/reflexao')}}> Reflexão  </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
                 <Dropdown.Toggle variant="light">Op. Aritiméticas</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={redirectHisto}>Histogramas</Dropdown.Item>
-                    <Dropdown.Item onClick={redirectcontrast}> Contraste  </Dropdown.Item>
-                    <Dropdown.Item onClick={redirectequalized}> Imagem Equalizada  </Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/histograma')}}>Histogramas</Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/contraste')}}> Contraste  </Dropdown.Item>
+                    <Dropdown.Item onClick={() => {navigate('/equalized')}}> Imagem Equalizada  </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
 
-            {/* <button onClick={redirectAd}> Adiçao </button>
-            <button onClick={redirectSub}> Subtração </button>
-            <button onClick={redirectMult}> Multiplicação  </button>
-            <button onClick={redirectDiv}> Divisão  </button>
-            <button onClick={redirectTrans}> Translação </button>
-            <button onClick={redirectRot}> Rotação </button>
-            <button onClick={redirectEsc}> Escala </button>
-            <button onClick={redirectRef}> Reflexão </button>
-            <button onClick={redirectHisto}> Histogramas </button>
-            <button onClick={redirectcontrast}> Contrast Stretching </button>
-            <button onClick={redirectequalized}> Imagem Equalizada </button> */}
+            <button> Smoothing</button>
+
+            <Dropdown>
+                <Dropdown.Toggle variant="light">Filtros Laplacianos</Dropdown.Toggle>
+                <Dropdown.Menu>
+                    <Dropdown.Item> Filtros Laplacianos</Dropdown.Item>
+                    <Dropdown.Item> Filtro LoG </Dropdown.Item>
+                    <Dropdown.Item onClick={()=> navigate('/Unsharp')}> Unsharp masking/ Highboost filtering </Dropdown.Item>
+                    <Dropdown.Item onClick={()=> navigate('/Robs')}> Detector de Roberts </Dropdown.Item>
+                    <Dropdown.Item onClick={()=> navigate('/Sobel')} > Detector de Sobel </Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
         </Container>
 
     );

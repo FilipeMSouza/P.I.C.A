@@ -1,13 +1,13 @@
-import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2, GraphResult } from "./style"
+import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2, GraphResult } from "../style"
 
 import {useEffect, useState} from 'react';
-import { api } from '../Services/api';
+import { api } from '../../Services/api';
 
-import RepositoryImage from './components/repository_image';
-import Lena from "../assets/placeholders/lena.jpeg";
-import Amongus from "../assets/placeholders/amongus.jpeg";
-import Doggo from "../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../assets/placeholders/rayquaza.jpeg";
+import RepositoryImage from '../components/repository_image';
+import Lena from "../../assets/placeholders/lena.jpeg";
+import Amongus from "../../assets/placeholders/amongus.jpeg";
+import Doggo from "../../assets/placeholders/doggo.jpeg";
+import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
 
 import { AgChartsReact } from 'ag-charts-react';
 
@@ -99,7 +99,6 @@ export default function ContrastStretch() {
     return (
       
             <Container>
-                contrasrt
                 <AuxContainer>
                     <Content>
                     {btn.map(img => {
