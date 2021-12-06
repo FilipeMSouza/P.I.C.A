@@ -13,24 +13,8 @@ export function Buttons() {
 
     let navigate = useNavigate();
 
-    
-   
-    const redirectHisto = () => {
-        navigate('/histograma')
-    }
-    const redirectcontrast = () => {
-        navigate('/contraste')
-    }
-    const redirectequalized = () => {
-        navigate('/equalized')
-    }
-
-
     return (
-
         <Container>
-
-
             <Dropdown>
                 <Dropdown.Toggle variant="light">Op. Aritiméticas</Dropdown.Toggle>
 
@@ -38,35 +22,35 @@ export function Buttons() {
                     <Dropdown.Item onClick={()=>navigate('/adicao')}>Adiçao</Dropdown.Item>
                     <Dropdown.Item onClick={()=>navigate('/subtracao')}> Subtração</Dropdown.Item>
                     <Dropdown.Item onClick={()=>navigate('/multiplicacao')}> Multiplicação  </Dropdown.Item>
-                    <Dropdown.Item onClick={() => {navigate('/divisao')}}> Divisão  </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/divisao')}> Divisão  </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
                 <Dropdown.Toggle variant="light">Op. Aritiméticas</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => {navigate('/translacao')}}>Translação</Dropdown.Item>
-                    <Dropdown.Item onClick={() => {navigate('/rotacao')}}> Rotação</Dropdown.Item>
-                    <Dropdown.Item onClick={() => { navigate('/escala')}}> Escala  </Dropdown.Item>
-                    <Dropdown.Item onClick={() => {navigate('/reflexao')}}> Reflexão  </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/translacao')}>Translação</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/rotacao')}> Rotação</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/escala')}> Escala  </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/reflexao')}> Reflexão  </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
-                <Dropdown.Toggle variant="light">Op. Aritiméticas</Dropdown.Toggle>
+                <Dropdown.Toggle variant="light">Histogramas</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => {navigate('/histograma')}}>Histogramas</Dropdown.Item>
-                    <Dropdown.Item onClick={() => {navigate('/contraste')}}> Contraste  </Dropdown.Item>
-                    <Dropdown.Item onClick={() => {navigate('/equalized')}}> Imagem Equalizada  </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/histograma')}>Histogramas</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/contraste')}> Contraste  </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/equalized')}> Imagem Equalizada  </Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
 
-            <button> Smoothing</button>
+            <button onClick={()=>navigate('/Smoothing')}>Smoothing</button>
 
             <Dropdown>
                 <Dropdown.Toggle variant="light">Filtros Laplacianos</Dropdown.Toggle>
                 <Dropdown.Menu>
                     <Dropdown.Item> Filtros Laplacianos</Dropdown.Item>
                     <Dropdown.Item> Filtro LoG </Dropdown.Item>
-                    <Dropdown.Item onClick={()=> navigate('/Unsharp')}> Unsharp masking/ Highboost filtering </Dropdown.Item>
+                    <Dropdown.Item onClick={()=> navigate('/Unsharp')}> Unsharp / Highboost filtering </Dropdown.Item>
                     <Dropdown.Item onClick={()=> navigate('/Robs')}> Detector de Roberts </Dropdown.Item>
                     <Dropdown.Item onClick={()=> navigate('/Sobel')} > Detector de Sobel </Dropdown.Item>
                 </Dropdown.Menu>

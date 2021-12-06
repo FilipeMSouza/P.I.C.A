@@ -4,9 +4,7 @@
   "main": "index.js",
   "repository": "https://github.com/FilipeMSouza/P.I.C.A.git",
   "author": "FilipeMSouza ",
-  "contributors": [
-
-  ],
+  "contributors": [],
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.1",

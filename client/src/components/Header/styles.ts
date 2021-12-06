@@ -15,8 +15,8 @@ export const Content = styled.div`
     align-items: center;
     justify-content: space-between;
     img{ 
-        margin-top: 2rem;
-        margin-left: -5rem;
+        margin-top: -1.5rem;
+        margin-left: -12rem;
     }
     
 

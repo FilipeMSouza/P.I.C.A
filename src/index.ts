@@ -1,5 +1,10 @@
 import express, { NextFunction } from "express";
 
+var mat3x3Simples = [[1,1,1],[1,1,1],[1,1,1]]
+var mat3x3Comp= [[1,2,1],[2,4,2],[1,2,1]]
+var mat5x5Simples = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]
+var mat5x5Comp= [[1,2,3,2,1],[2,4,6,4,2],[4,8,12,8,4],[2,4,6,4,2],[1,2,3,2,1]]
+
 import {
     multiplyTwoImages,
     sumTwoImages,
@@ -153,12 +158,34 @@ app.get("/smoothing/:imagePath&:mascara&:tipoBorda", async (req: any, res) => {
     let imagePath: string = req.params["imagePath"];
     let tipoBorda: TipoBorda = parseInt(req.params["tipoBorda"]);
 
-    let mascara = new Mascara(
-        eval(req.params["mascara"]) as number[][],
-        tipoBorda
-    );
+    let n_matrix:number = parseInt(req.params["mascara"]);
+    let mascAux: Mascara;
+    switch (n_matrix) {
+        case 1:
+            mascAux = new Mascara(
+                mat3x3Simples,tipoBorda
+            );
+            break;
+        case 2:
+            mascAux = new Mascara(
+                mat3x3Comp,tipoBorda
+            );
+            break;
+        case 3:
+            mascAux = new Mascara(
+                mat5x5Simples,tipoBorda
+            );
+            break;
+        default:
+            mascAux = new Mascara(
+                mat5x5Comp,tipoBorda
+            );
+            break;
 
-    const result = await aplicarFiltroSmoothing(imagePath, mascara);
+    }
+    
+
+    const result = await aplicarFiltroSmoothing(imagePath, mascAux);
     return res.status(200).json({ data: result });
 });
 

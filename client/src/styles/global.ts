@@ -2,12 +2,12 @@ import {createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 :root{
-    --roxo: #4D4D8B;
+    --roxo: #2C3E40;
     --lilas: #918DBF;
     --roxo-claro:#5F5DA6;
     --azul: #2D4159;
     --preto:#262626;
-    --white: white;
+    --white: E3E6E3;
     
 }
 

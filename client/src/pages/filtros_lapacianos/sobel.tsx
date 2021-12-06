@@ -73,8 +73,8 @@ export default function Sobel() {
 
                 <AuxContainer2>
                     <Result>
-                    <img className="resultado" src={vResult} alt="Resultado" />
-                    <img className="resultado" src={hResult} alt="Resultado" />
+                        <img className="resultado" src={vResult} alt="Resultado" />
+                        <img className="resultado" src={hResult} alt="Resultado" />
                     </Result>
                 </AuxContainer2>
 

@@ -58,9 +58,9 @@ export const ButtonContent = styled.div`
         margin-bottom: 3rem;
         margin-left: 0.75rem;
         height: 3rem;
-        background: var(--roxo);
-        color: var(--white);
-        box-shadow: .2rem .4rem .6rem var(--azul);
+        background:#E3E6E3;
+        color: #001728;
+        box-shadow: .2rem .4rem .6rem #001728;
         padding: 0.5rem 0.5rem;
         border-radius: 0.25rem;
         
@@ -96,11 +96,12 @@ export const Operation = styled.div`
         margin-bottom:2rem;
         margin-left: 0.75rem;
         height: 3rem;
-        background: var(--roxo);
-        color: var(--white);
-        box-shadow: .2rem .4rem .6rem var(--azul);
+        background: #E3E6E3;
+        color: #001728;
+        box-shadow: .2rem .4rem .6rem #001728;
         padding: 0.5rem 0.5rem;
         border-radius: 0.25rem;
+        border: none;
         &.translacao{
             margin-top:1.495rem;
         }

@@ -1,4 +1,4 @@
-import logoImg from '../../assets/LogoImg.svg';
+import logoImg from '../../assets/LogoImg2.svg';
 import { Container, Content } from './styles';
 import React from 'react';
 

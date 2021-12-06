@@ -8,11 +8,11 @@ export const Container = styled.div`
 
     button{
         position: relative;
-        background-color: var(--white);
+        background-color: white;
         color: var(--preto);
         padding: 1.5rem 2rem;
         border-radius: 0.25rem;
-        box-shadow: .2rem .4rem .8rem var( --preto);
+        box-shadow: .2rem .4rem .8rem #001728;
     }
     
 `

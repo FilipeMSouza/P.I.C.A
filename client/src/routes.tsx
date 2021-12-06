@@ -24,6 +24,8 @@ import Sobel from './pages/filtros_lapacianos/sobel';
 import Robs from './pages/filtros_lapacianos/roberts'
 import Unsharp from './pages/filtros_lapacianos/unsharp'
 
+import Smoothing from './pages/smoothing/smoothing'
+
 export default function MainRoutes() {
     return (
        <Routes>
@@ -45,7 +47,7 @@ export default function MainRoutes() {
             <Route path="/Sobel" element ={<Sobel/>} />
             <Route path="/Robs" element ={<Robs/>} />
             <Route path="/Unsharp" element ={<Unsharp/>} /> 
-
+            <Route path="/Smoothing" element ={<Smoothing/>} /> 
             <Route path="*" element ={<h1>Not Found</h1>}/>
        </Routes>
        
