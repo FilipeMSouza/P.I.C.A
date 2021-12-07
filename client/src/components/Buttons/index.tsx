@@ -48,8 +48,8 @@ export function Buttons() {
             <Dropdown>
                 <Dropdown.Toggle variant="light">Filtros Laplacianos</Dropdown.Toggle>
                 <Dropdown.Menu>
-                    <Dropdown.Item> Filtros Laplacianos</Dropdown.Item>
-                    <Dropdown.Item> Filtro LoG </Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/Laplace')}>Laplaciano</Dropdown.Item>
+                    <Dropdown.Item onClick={()=>navigate('/Log')}> LoG </Dropdown.Item>
                     <Dropdown.Item onClick={()=> navigate('/Unsharp')}> Unsharp / Highboost filtering </Dropdown.Item>
                     <Dropdown.Item onClick={()=> navigate('/Robs')}> Detector de Roberts </Dropdown.Item>
                     <Dropdown.Item onClick={()=> navigate('/Sobel')} > Detector de Sobel </Dropdown.Item>

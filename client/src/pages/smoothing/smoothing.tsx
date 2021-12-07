@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { api } from '../../Services/api';
 import RepositoryImage from '../components/repository_image';
 import Lena from "../../assets/placeholders/lena.jpeg";
-import Amongus from "../../assets/placeholders/amongus.jpeg";
+import cameraman from "../../assets/placeholders/cameraman.jpeg";
 import Doggo from "../../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
+import paris from "../../assets/placeholders/paris.jpeg";
 import Dropdown from "react-bootstrap/esm/Dropdown";
 interface repository {
     name: string,
@@ -35,9 +35,9 @@ export default function Smoothing() {
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
-        { name: "Amongus", where: Amongus, },
+        { name: "cameraman", where: cameraman, }, 
         { name: "Doggo", where: Doggo, },
-        { name: "MegaRayquaza", where: MegaRayquaza, }
+        { name: "paris", where: paris, }
     ];
     useEffect(() => {
         setBtn(imageData)
@@ -45,9 +45,9 @@ export default function Smoothing() {
 
     const urlPaths = [
         'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
-        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fcameraman.jpeg',
         'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
-        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fparis.jpeg'
     ]
 
     const input = [
@@ -68,7 +68,7 @@ export default function Smoothing() {
                 </Content>
                 <ButtonContent>
                     {urlPaths.map(img =>
-                        <button key={img} onClick={() => setParamImg(img)}>Mudar escala</button>
+                        <button key={img} onClick={() => setParamImg(img)}>Selecionar</button>
                     )}
                 </ButtonContent>
 

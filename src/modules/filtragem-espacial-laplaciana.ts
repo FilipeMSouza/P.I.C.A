@@ -1,7 +1,7 @@
 import Image from "image-js";
 import { resizeImg, ImageKind, getMatrixFromImage } from "./utils";
 
-class FiltrosLaplace {
+export class FiltrosLaplace {
     static FILTRO_LAPLACE_A = [0, 1, 0, 1, -4, 1, 0, 1, 0];
     static FILTRO_LAPLACE_B = [1, 1, 1, 1, -8, 1, 1, 1, 1];
     static FILTRO_LAPLACE_C = [0, -1, 0, -1, 4, -1, 0, -1, 0];

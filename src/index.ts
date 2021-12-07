@@ -1,5 +1,5 @@
 import express, { NextFunction } from "express";
-
+import {FiltrosLaplace} from './modules/filtragem-espacial-laplaciana'
 var mat3x3Simples = [[1,1,1],[1,1,1],[1,1,1]]
 var mat3x3Comp= [[1,2,1],[2,4,2],[1,2,1]]
 var mat5x5Simples = [[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]]
@@ -41,6 +41,7 @@ import {
 } from "../src/modules/filtragem-espacial-laplaciana";
 
 import Mascara from "./modules/Mascara";
+import { string } from "mathjs";
 
 const PORT: number = 8048;
 const app = express();
@@ -152,8 +153,6 @@ app.get("/contrastStretching/:imagePath", async (req: any, res) => {
     return res.status(200).json({ data: result });
 });
 
-//--------------------
-
 app.get("/smoothing/:imagePath&:mascara&:tipoBorda", async (req: any, res) => {
     let imagePath: string = req.params["imagePath"];
     let tipoBorda: TipoBorda = parseInt(req.params["tipoBorda"]);
@@ -189,14 +188,46 @@ app.get("/smoothing/:imagePath&:mascara&:tipoBorda", async (req: any, res) => {
     return res.status(200).json({ data: result });
 });
 
-//-------
-
 app.get("/laplaciano/:imagePath&:filtro&:divByNine", async (req: any, res) => {
     let imagePath: string = req.params["imagePath"];
-    let filtro: number[] = eval(req.params["filtro"]) as number[];
+    let filtro: number = parseInt(req.params["filtro"])
     let divideByNine: boolean = req.params["divByNine"];
-
-    let result: string = await laplaciano(imagePath, filtro, divideByNine);
+    let result: string
+    let auxFiltro:number[]
+   switch(filtro){
+        case 1:
+            auxFiltro = FiltrosLaplace.FILTRO_LAPLACE_A
+            if(divideByNine.toString() == 'true'){
+                result = await laplaciano(imagePath, auxFiltro, true);
+            }else{
+                result = await laplaciano(imagePath, auxFiltro, false);
+            }
+            break;
+        case 2:
+            auxFiltro = FiltrosLaplace.FILTRO_LAPLACE_B
+            if(divideByNine.toString() == 'true'){
+                result = await laplaciano(imagePath, auxFiltro, true);
+            }else{
+                result = await laplaciano(imagePath, auxFiltro, false);
+            }
+            break;
+        case 3:
+            auxFiltro= FiltrosLaplace.FILTRO_LAPLACE_C
+            if(divideByNine.toString() == 'true'){
+                result = await laplaciano(imagePath, auxFiltro, true);
+            }else{
+                result = await laplaciano(imagePath, auxFiltro, false);
+            }
+            break;
+        default:
+            auxFiltro = FiltrosLaplace.FILTRO_LAPLACE_C
+            if(divideByNine.toString() == 'true'){
+                result = await laplaciano(imagePath, auxFiltro, true);
+            }else{
+                result = await laplaciano(imagePath, auxFiltro, false);
+            }
+            break;
+   }
 
     return res.status(200).json({ data: result });
 });

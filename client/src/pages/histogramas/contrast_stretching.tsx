@@ -5,9 +5,9 @@ import { api } from '../../Services/api';
 
 import RepositoryImage from '../components/repository_image';
 import Lena from "../../assets/placeholders/lena.jpeg";
-import Amongus from "../../assets/placeholders/amongus.jpeg";
+import cameraman from "../../assets/placeholders/cameraman.jpeg";
 import Doggo from "../../assets/placeholders/doggo.jpeg";
-import MegaRayquaza from "../../assets/placeholders/rayquaza.jpeg";
+import paris from "../../assets/placeholders/paris.jpeg";
 
 import { AgChartsReact } from 'ag-charts-react';
 
@@ -27,9 +27,9 @@ export default function ContrastStretch() {
 
     const imageData = [
         { name: "Lena", where: Lena, },
-        { name: "Amongus", where: Amongus, },
+        { name: "cameraman", where: cameraman, },
         { name: "Doggo", where: Doggo, },
-        { name: "MegaRayquaza", where: MegaRayquaza, }
+        { name: "paris", where: paris, }
     ];
     useEffect(() => {
         setBtn(imageData)
@@ -37,9 +37,9 @@ export default function ContrastStretch() {
 
     const urlPaths = [
         'client%2Fsrc%2Fassets%2Fplaceholders%2Flena.jpeg',
-        'client%2Fsrc%2Fassets%2Fplaceholders%2Famongus.jpeg',
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fcameraman.jpeg',
         'client%2Fsrc%2Fassets%2Fplaceholders%2Fdoggo.jpeg',
-        'client%2Fsrc%2Fassets%2Fplaceholders%2Frayquaza.jpeg'
+        'client%2Fsrc%2Fassets%2Fplaceholders%2Fparis.jpeg'
     ]
 
     const contrastStretch = async () => {

@@ -1,4 +1,4 @@
-import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2 } from "../style"
+import { Container, Content, AuxContainer, ButtonContent, Result,  AuxContainer2, Operation } from "../style"
 
 import {useEffect, useState} from 'react';
 import { api } from '../../Services/api';
@@ -8,6 +8,7 @@ import Lena from "../../assets/placeholders/lena.jpeg";
 import cameraman from "../../assets/placeholders/cameraman.jpeg";
 import Doggo from "../../assets/placeholders/doggo.jpeg";
 import paris from "../../assets/placeholders/paris.jpeg";
+
 interface repository {
     name: string,
     where: string,
@@ -15,10 +16,12 @@ interface repository {
 }
 
 
-export default function Reflexao() {
+export default function Lapaciano() {
 
     const [param, setParam] = useState('')
     const [result, setResult] = useState('')
+    const [filtro, setFiltro] = useState('')
+    const [div9, setDiv9] = useState(false)
     const [btn, setBtn] = useState<repository[]>([])
     const imageData = [
         { name: "Lena", where: Lena, },
@@ -37,14 +40,23 @@ export default function Reflexao() {
         'client%2Fsrc%2Fassets%2Fplaceholders%2Fparis.jpeg'
     ]
 
-    const reflectImage = async () => {
-        const {data} = await api.get('reflexao/' + param)
+    const laplaciano = async () => {
+        const {data} = await api.get('laplaciano/'+param+'&'+filtro+'&'+div9)
         setResult(data.data)
     }
 
     useEffect(() => {
-        param.length !== 0 && reflectImage()
-    }, [param])
+        param.length !== 0 && filtro.length != 0 && div9 != null && laplaciano()
+    }, [param, filtro])
+
+    function handleclick() {
+        if(div9 == false){
+            setDiv9(true)
+        }
+        else{
+            setDiv9(false)
+        }
+    }
 
     return (
       
@@ -59,15 +71,22 @@ export default function Reflexao() {
                     </Content>
                     <ButtonContent>
                         {urlPaths.map(img =>
-                            <button key={img} onClick={() => setParam(img)}>Refletir</button>
+                            <button key={img} onClick={() => setParam(img)}>Selecionar</button>
                         )}
                     </ButtonContent>
-
                 </AuxContainer>
 
                 <AuxContainer2>
+                    <Operation>
+                        <button onClick={() => setFiltro('1')}>Filtro A</button>
+                        <button onClick={() => setFiltro('2')}>Filtro B</button>
+                        <button onClick={() => setFiltro('3')}>Filtro C</button>
+                        <button onClick={() => setFiltro('4')}>Filtro D</button>
+                        <button onClick={() => handleclick()}>Dividir por 9?</button>
+                        
+                    </Operation>
                     <Result>
-                        <img className="resultado" src={result} alt="Resultado" />
+                    <img className="resultado" src={result} alt="Resultado" />
                     </Result>
                 </AuxContainer2>
 
